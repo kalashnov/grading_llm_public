@@ -133,7 +133,7 @@ criteria. The skill asks which question, then goes through it with the TA. At th
 
 **Render the prompts.** The skill builds the grading prompts with
 `generate_grading_prompt.py`, and you can run it yourself after editing a rubric. To see
-what it produces, try it on a shipped example; it needs no student data:
+what it produces, try it on a shipped example:
 
 ```bash
 python skills/prompt-authoring/generate_grading_prompt.py final 2.1 --stdout   # print the prompt + schema
