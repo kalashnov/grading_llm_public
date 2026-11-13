@@ -1,0 +1,135 @@
+{
+  "criteria": [
+    {
+      "id": "selects_stem_business_coefficients",
+      "question": "Does the response identify this version's STEM and Business major coefficients, or the corresponding STEM and Business predicted earnings, as the relevant quantities to compare?",
+      "accept": [
+        "Uses b_STEM and b_Business as the two coefficients to compare.",
+        "Writes that the difference is the STEM coefficient minus the Business coefficient.",
+        "Computes predicted earnings for a STEM major and for a Business major using the STEM and Business dummy terms."
+      ],
+      "reject": [
+        "REJECT only if the response uses the GPA coefficient, intercept, SocialSci coefficient, or standard errors as the main quantities instead of the STEM and Business coefficients.",
+        "REJECT only if the response never identifies any relevant STEM and Business coefficient or prediction."
+      ]
+    },
+    {
+      "id": "uses_common_omitted_baseline",
+      "question": "Does the response recognize, explicitly or implicitly, that the STEM and Business coefficients are both relative to the same omitted Humanities baseline and therefore can be compared by differencing them?",
+      "accept": [
+        "States that STEM is above Humanities and Business is above Humanities, so subtract the two differences.",
+        "Writes (STEM - Humanities) - (Business - Humanities).",
+        "Uses the two dummy coefficients directly, which implicitly uses the common omitted category."
+      ],
+      "reject": [
+        "REJECT only if the final answer is just the STEM-vs-Humanities coefficient or just the Business-vs-Humanities coefficient.",
+        "REJECT only if the response treats the omitted Humanities category as requiring an additional unknown adjustment that is not canceled."
+      ]
+    },
+    {
+      "id": "holds_gpa_constant",
+      "question": "Does the response keep GPA and other common regression terms fixed or canceled when comparing STEM and Business majors?",
+      "accept": [
+        "Says holding GPA or all else constant.",
+        "Writes the same GPA term in both predicted earnings equations and cancels it.",
+        "Omits GPA because the comparison is only between the two major dummy coefficients."
+      ],
+      "reject": [
+        "REJECT only if the response uses different GPA values for STEM and Business without justification.",
+        "REJECT only if the response changes the intercept or another common term across the two majors in a way that drives the final difference."
+      ]
+    },
+    {
+      "id": "respects_mutually_exclusive_majors",
+      "question": "Does the response treat the major dummies as mutually exclusive, so a STEM comparison turns on STEM and a Business comparison turns on Business, not both at once?",
+      "accept": [
+        "Sets STEM = 1 and Business = SocialSci = 0 for the STEM prediction, and Business = 1 and STEM = SocialSci = 0 for the Business prediction.",
+        "Compares only the STEM coefficient with the Business coefficient.",
+        "Uses one relevant major dummy at a time, even if not written formally."
+      ],
+      "reject": [
+        "REJECT only if the response clearly sets STEM and Business equal to 1 for the same major/person.",
+        "REJECT only if the response adds both STEM and Business coefficients as if one graduate can be both majors in this comparison."
+      ]
+    },
+    {
+      "id": "sets_up_stem_minus_business",
+      "question": "Does the response set up the requested STEM-minus-Business earnings difference as a subtraction of the Business coefficient or prediction from the STEM coefficient or prediction?",
+      "accept": [
+        "Uses b_STEM - b_Business.",
+        "Uses predicted earnings for STEM minus predicted earnings for Business.",
+        "Uses this version's STEM coefficient minus this version's Business coefficient."
+      ],
+      "reject": [
+        "REJECT only if the response adds the two coefficients, averages them, takes a ratio, or otherwise does not use a STEM-minus-Business subtraction.",
+        "REJECT only if the response subtracts Business minus STEM and does not otherwise make clear that it is reporting the magnitude with the correct direction."
+      ]
+    },
+    {
+      "id": "computes_correct_difference",
+      "question": "Does the response's final numeric earnings difference equal this version's STEM coefficient minus this version's Business coefficient, allowing minor rounding?",
+      "accept": [
+        "For the shown values, gives 4.6.",
+        "For the shown values, gives 4.60 or $4,600.",
+        "Gives the correct difference for the variant's coefficients even if written in dollars rather than thousands."
+      ],
+      "reject": [
+        "REJECT only if the final numeric answer is a different value such as 1.21, 10.2, 4.8, 14.5, or 14.6.",
+        "REJECT only if the response gives no numeric difference."
+      ]
+    },
+    {
+      "id": "interprets_stem_higher",
+      "question": "Does the response interpret the sign correctly, meaning STEM earnings are higher than Business earnings by the reported positive difference, or define the positive value as STEM minus Business?",
+      "accept": [
+        "States that STEM majors earn more than Business majors by the difference.",
+        "Writes STEM - Business equals a positive difference.",
+        "Reports a positive difference and labels it as the STEM versus Business comparison."
+      ],
+      "reject": [
+        "REJECT only if the response says Business majors earn more than STEM majors.",
+        "REJECT only if the final answer is negative and the response does not explain that it used the opposite order.",
+        "REJECT only if the wording reverses or contradicts the STEM-over-Business direction."
+      ]
+    },
+    {
+      "id": "avoids_test_statistic_difference",
+      "question": "Does the response avoid basing the estimated earnings difference on standard errors, t-statistics, or significance-test calculations?",
+      "accept": [
+        "Uses coefficient differences, with no t-statistic calculation.",
+        "Mentions standard errors or t-statistics but still uses the coefficient difference as the earnings difference.",
+        "Ignores the standard errors entirely."
+      ],
+      "reject": [
+        "REJECT only if the final difference is computed as b_STEM / se_STEM minus b_Business / se_Business.",
+        "REJECT only if the response reports a difference in t-statistics, significance, or standard errors instead of an earnings difference."
+      ]
+    },
+    {
+      "id": "uses_correct_earnings_units",
+      "question": "Does the response express the answer in the correct earnings units, accepting either model units of thousands of dollars or a correct dollar conversion, and not as a percentage?",
+      "accept": [
+        "Says 4.6 thousand dollars for the shown values.",
+        "Says $4,600 for the shown values.",
+        "Gives a bare 4.6 in a context where the model's units are thousands of dollars."
+      ],
+      "reject": [
+        "REJECT only if the response explicitly labels the difference as a percent, percentage point, or other non-dollar unit.",
+        "REJECT only if the response converts the scale incorrectly, such as $460, $1,600, $7,600, $14,600, or 4,600 thousand dollars as the final answer."
+      ]
+    },
+    {
+      "id": "shows_coefficient_work",
+      "question": "Does the response show enough work to connect the final answer to the regression coefficients or predicted earnings comparison?",
+      "accept": [
+        "Shows b_STEM - b_Business.",
+        "Shows predicted STEM earnings minus predicted Business earnings.",
+        "Explains in words that the STEM and Business coefficients are compared and then gives the difference."
+      ],
+      "reject": [
+        "REJECT only if the response gives only a final number with no coefficient comparison, formula, or explanatory work.",
+        "REJECT only if the response is blank, refuses to answer, or merely restates the question without doing the comparison."
+      ]
+    }
+  ]
+}

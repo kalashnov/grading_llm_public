@@ -1,0 +1,358 @@
+Here is the problem that was given to the student:
+```text
+You have a dataset with information on course evaluations, course
+characteristics, and professor characteristics for 462 courses at the
+University of Texas, Austin. You want to analyze the determinants of teachers'
+evaluations. In your initial specification, you regress course evaluations on
+five regressors and obtain the following results:
+
+  Linear regression                 Number of obs =     462
+                                    F(5, 456)     =   21.52
+                                    Prob > F      =  0.0000
+                                    R-squared     =  0.1700
+                                    Root MSE      =  .48566
+
+               |              Robust
+   course_eval | Coefficient  std. err.     t    P>|t|   [95% conf. interval]
+  -------------+----------------------------------------------------------------
+        beauty |  .1647695   .0308499    5.34   0.000    .104144     .225395
+        female | -.2517388   .0471784   -5.34   0.000   -.3444528   -.1590247
+      minority | -.1708324   .0643869   -2.65   0.008   -.2973642   -.0443006
+     nnenglish | -.2175982   .0762312   -2.85   0.005   -.3674063   -.0677901
+     onecredit |  .6022955   .121487     4.96   0.000    .3635517    .8410394
+         _cons |  4.115747   .028349   145.18   0.000    4.060036    4.171458
+
+where course_eval is a teaching evaluation score, from 1 (very unsatisfactory)
+to 5 (excellent), and
+- beauty is an average rating of the instructor's physical appearance by a
+  panel of six students, shifted to have mean zero (beauty = 0 means average
+  looks). In your sample, beauty ranges from -1.5 to +2.
+- female is a binary variable that takes a value of 1 when the teacher is a
+  woman,
+- minority is a binary variable that takes a value of 1 when the teacher is NOT
+  white,
+- nnenglish is a binary variable that takes a value of 1 when the teacher is NOT
+  a native English speaker, and
+- onecredit is a binary variable that takes a value of 1 when the course is a
+  single credit elective (such as yoga, dance, etc).
+
+You introduce an interaction term min_fem = minority*female. The estimation
+yields the following results:
+
+  Linear regression                 Number of obs =     462
+                                    F(6, 455)     =   21.38
+                                    Prob > F      =  0.0000
+                                    R-squared     =  0.1758
+                                    Root MSE      =  .48447
+
+               |              Robust
+   course_eval | Coefficient  std. err.     t    P>|t|   [95% conf. interval]
+  -------------+----------------------------------------------------------------
+        beauty |  .1770669   .0322771    5.49   0.000    .1136362    .2404976
+        female | -.2173182   .0530569   -4.10   0.000   -.3215853   -.1130511
+      minority | -.0393463   .0854207   -0.46   0.645   -.2072144    .1285218
+     nnenglish | -.2507944   .0719954   -3.48   0.001   -.3922791   -.1093098
+     onecredit |  .5678335   .1208712    4.70   0.000    .3302984    .8053686
+       min_fem | -.2469421   .1167427   -2.12   0.035   -.476364    -.0175203
+         _cons |  4.103867   .0294904  139.16   0.000    4.045913    4.161821
+
+Is there evidence, at the 5% significance level, that the difference in average
+course evaluations between female and male instructors depends on minority
+status? State the null and alternative hypotheses, compute the appropriate test
+statistic, and state your conclusion.
+```
+
+SOLUTION:
+```text
+The min_fem coefficient tests whether the female-male difference depends on
+minority status.
+
+  H0: beta_min_fem = 0
+  H1: beta_min_fem != 0
+
+  t = -0.2469421 / 0.1167427 = -2.12
+
+|t| = 2.12 > 1.96 (and p = 0.035 < 0.05), so reject H0. There is evidence at the
+5% level that the difference in average course evaluations between female and
+male instructors depends on minority status.
+```
+
+GRADING PHILOSOPHY: Award credit generously when the student demonstrates
+conceptual understanding, even if their wording is informal, imprecise, or
+non-standard — the goal is to assess whether the student grasps the underlying
+idea, not whether they have memorized exact textbook phrasing or formal
+terminology, so plain-language equivalents are fully acceptable. Identify the
+key skill being tested and reward any correct path to it: accept any
+algebraically equivalent setup or valid computational method, allow students
+to carry forward their own answer from an earlier part, and apply reasonable
+tolerance for rounding. Minor arithmetic errors that do not reflect a
+conceptual misunderstanding should not forfeit credit for method criteria,
+and where the question explicitly demands something specific (such as units),
+require it while still crediting approximate or informal descriptions of its
+meaning. Treat error-detection criteria conservatively — only flag an error
+when the student clearly and explicitly makes it, allow for minor mistakes, that do not show their misunderstanding. When in doubt, give the student the benefit of the doubt.
+
+NOTE ON OCR: The student answers you receive are machine transcriptions of
+handwritten work and may contain transcription errors — misread digits that
+look plausible but are wrong, dropped or misplaced decimal points, two numbers
+merged into one or one number split apart, garbled 2-D math (fractions,
+exponents, subscripts), leftover crossed-out text, and mishandled math symbols
+(e.g. a Greek beta written as "B"). Genuinely illegible parts may be marked
+[illegible]. When a transcription looks garbled, inconsistent, or unhelpful,
+refer directly to the answer image rather than grading the text as written. If
+real doubt remains about how to interpret the student's input, do not guess —
+report that uncertainty in the appropriate fields. For example:
+- dropped or misplaced decimal point: "0.439" -> "0439" or "439"; "0.05" ->
+  "095"; "0.013" -> "0013";
+- leading "0." turned into a digit: "0.489" -> "6489";
+- two adjacent numbers merged into one: "0.439  0.489" -> "0439 0489" or "6928";
+- one number split across lines/tokens: "0.01276" -> "0" / "01276";
+- a single digit misread, producing a plausible but wrong number: "0.464" ->
+  "0.444", "0.439" -> "0.937", "0.013" -> "0.913", "26.81" -> "26.31" (common
+  digit confusions: 4<->9, 9<->0<->6, 1<->7, 3<->8, 5<->6).
+
+I want you to grade the answer of the student you just transcribed according to the following criteria:
+  1. [connects_question_to_interaction] C1: Does the answer recognize that the relevant parameter is the coefficient on the minority-by-female interaction term (min_fem)?
+     - ACCEPT: States that the coefficient on min_fem or minority*female is the coefficient to test.
+     - ACCEPT: Explains that the female-male difference is beta_female plus beta_min_fem times minority.
+     - ACCEPT: Says the interaction term determines whether the gender gap depends on minority status.
+     - REJECT: Tests only the minority main effect or only the female main effect.
+     - REJECT: Treats the question as asking whether minority status affects evaluations in general.
+     - REJECT: Uses a product of the separate minority and female coefficients instead of the interaction coefficient.
+
+  2. [correct_null_no_interaction] C2: Does the answer state the null hypothesis as beta_min_fem = 0?
+     - ACCEPT: H0 beta_min_fem = 0.
+     - ACCEPT: H0 the coefficient on minority*female is zero.
+     - ACCEPT: H0 the difference between female and male instructors average evaluations does not depend on minority status.
+     - REJECT: H0 beta_minority = 0 or H0 beta_female = 0.
+     - REJECT: H0 compares beta_female to beta_min_fem or to the intercept.
+     - REJECT: H0 says the female-male gap does depend on minority status.
+
+  3. [correct_two_sided_alternative] C3: Does the answer state the alternative hypothesis as beta_min_fem not equal to 0 (two-sided)?
+     - ACCEPT: Ha beta_min_fem not equal to 0.
+     - ACCEPT: Ha the coefficient on minority*female is not zero.
+     - ACCEPT: Ha the female-male evaluation difference depends on minority status.
+     - REJECT: Uses a one-sided alternative such as beta_min_fem > 0 or beta_min_fem < 0 without justification.
+     - REJECT: Uses an alternative about the minority main effect or female main effect only.
+     - REJECT: States the alternative as no dependence or no interaction.
+
+  4. [uses_interaction_regression_row] C4: Does the answer use the min_fem row from the interaction model output, rather than a main-effect row or the initial model?
+     - ACCEPT: Uses the reported min_fem coefficient, standard error, t-statistic, p-value, or confidence interval.
+     - ACCEPT: Refers to the row for min_fem, minority*female, or the interaction term in the second regression.
+     - ACCEPT: Uses the displayed interaction coefficient and robust standard error to form the test.
+     - REJECT: Bases the test on the minority row, female row, beauty row, onecredit row, or the first regression.
+     - REJECT: Uses the F-statistic for the whole regression as the requested test statistic.
+     - REJECT: Computes the interaction by multiplying the separate minority and female coefficient estimates.
+
+  5. [correct_t_statistic] C5: Does the answer compute or report the correct t-statistic for testing beta_min_fem = 0 (approximately -2.12)?
+     - ACCEPT: Reports or computes t approximately equal to -2.12 or 2.12.
+     - ACCEPT: Computes t = estimated beta_min_fem divided by SE(beta_min_fem).
+     - ACCEPT: Reads t = -2.12 directly from the min_fem row of the table.
+     - ACCEPT: Gives a numerically equivalent t-statistic after minor rounding.
+     - REJECT: Reports the coefficient itself as the t-statistic.
+     - REJECT: Uses the t-statistic for minority, female, onecredit, beauty, or the overall regression.
+     - REJECT: Gives a substantially different statistic that cannot be attributed to rounding or OCR error.
+
+  6. [correct_five_percent_rule] C6: Does the answer correctly apply the 5% two-sided decision rule (e.g. |t| > 1.96, p < 0.05, or CI excludes zero)?
+     - ACCEPT: Uses absolute value of t greater than approximately 1.96.
+     - ACCEPT: Uses the min_fem p-value of 0.035 and compares it to 0.05.
+     - ACCEPT: Uses the min_fem 95% confidence interval and notes that it excludes zero.
+     - REJECT: Treats a negative t-statistic as non-rejection merely because it is less than the positive critical value.
+     - REJECT: Uses a 1% rule, an F critical value, or another threshold that changes the decision.
+     - REJECT: Compares a p-value to 1 or 0.5 instead of 0.05.
+
+  7. [rejects_no_interaction_null] C7: Does the answer correctly reject the null hypothesis at the 5% significance level?
+     - ACCEPT: Reject H0 at the 5% level.
+     - ACCEPT: The interaction term is statistically significant at 5%, so reject the null.
+     - ACCEPT: The null of no dependence or no interaction is rejected.
+     - REJECT: Fails to reject H0.
+     - REJECT: Says the test is not statistically significant.
+     - REJECT: Gives both reject and fail-to-reject without making a clear correct decision.
+
+  8. [concludes_evidence_of_dependence] C8: Does the answer conclude that there is evidence at the 5% level that the female-male evaluation gap depends on minority status?
+     - ACCEPT: There is evidence that the female-male evaluation gap depends on minority status.
+     - ACCEPT: The difference in average course evaluations between female and male instructors varies by minority status.
+     - ACCEPT: Yes, at the 5% level the gender gap in course evaluations depends on minority status.
+     - REJECT: Concludes there is no evidence that the female-male gap depends on minority status.
+     - REJECT: Concludes the gap does not depend on minority status.
+     - REJECT: Only says there is some difference between female and male instructors without linking to minority status.
+
+  9. [keeps_requested_scope_clear] C9: Does the interpretation stay focused on the gender gap in course evaluations by minority status, rather than switching to a different outcome or main-effect claim?
+     - ACCEPT: Interprets the result as a minority-status difference in the female-versus-male course evaluation gap.
+     - ACCEPT: Mentions course evaluations, female versus male instructors, and minority status in the final interpretation.
+     - ACCEPT: Uses equivalent plain language such as gender gap in teaching evaluations varies by minority status.
+     - REJECT: Interprets the result as a tenure, earnings, career outcome, or student-performance result.
+     - REJECT: Concludes only that minority instructors differ from white instructors or that female instructors differ from male instructors.
+     - REJECT: States only that race and gender are related or significant without tying it to the requested gender-gap dependence.
+
+FEW-SHOT EXAMPLES:
+- label: full credit
+  answer:
+    ```text
+    H0: beta_min_fem = 0. Ha: beta_min_fem != 0. The relevant term is the minority*female interaction because the question asks whether the female-male evaluation gap changes with minority status. t = (-0.2469421 - 0) / 0.1167427 = -2.12, so |t| = 2.12 > 1.96 at the 5% level. Reject H0. There is statistically significant evidence that the difference in average course evaluations between female and male instructors depends on minority status.
+    ```
+  grading:
+    ```json
+    {
+      "comment": "Full credit.",
+      "uncertain": false,
+      "comment_uncertainty": "",
+      "criteria": {
+        "connects_question_to_interaction": true,
+        "correct_null_no_interaction": true,
+        "correct_two_sided_alternative": true,
+        "uses_interaction_regression_row": true,
+        "correct_t_statistic": true,
+        "correct_five_percent_rule": true,
+        "rejects_no_interaction_null": true,
+        "concludes_evidence_of_dependence": true,
+        "keeps_requested_scope_clear": true
+      }
+    }
+    ```
+- label: right setup wrong decision
+  answer:
+    ```text
+    H0: beta_min_fem = 0. H1: beta_min_fem != 0. For min_fem, t = -0.2469 / 0.1167 = -2.12. Since -2.12 is less than 1.96, fail to reject the null at 5%. There is no statistically significant evidence that the difference in average course evaluations between female and male instructors depends on minority status.
+    ```
+  grading:
+    ```json
+    {
+      "comment": "Right setup wrong decision.",
+      "uncertain": false,
+      "comment_uncertainty": "",
+      "criteria": {
+        "connects_question_to_interaction": true,
+        "correct_null_no_interaction": true,
+        "correct_two_sided_alternative": true,
+        "uses_interaction_regression_row": true,
+        "correct_t_statistic": true,
+        "correct_five_percent_rule": false,
+        "rejects_no_interaction_null": false,
+        "concludes_evidence_of_dependence": false,
+        "keeps_requested_scope_clear": true
+      }
+    }
+    ```
+- label: tests minority main effect
+  answer:
+    ```text
+    H0: beta_minority = 0. H1: beta_minority != 0. The minority coefficient is -0.0393 with t = -0.46, and |-0.46| < 1.96, so we fail to reject. Minority instructors do not have significantly different average course evaluations from white instructors at the 5% level.
+    ```
+  grading:
+    ```json
+    {
+      "comment": "Tests minority main effect.",
+      "uncertain": false,
+      "comment_uncertainty": "",
+      "criteria": {
+        "connects_question_to_interaction": false,
+        "correct_null_no_interaction": false,
+        "correct_two_sided_alternative": false,
+        "uses_interaction_regression_row": false,
+        "correct_t_statistic": false,
+        "correct_five_percent_rule": false,
+        "rejects_no_interaction_null": false,
+        "concludes_evidence_of_dependence": false,
+        "keeps_requested_scope_clear": false
+      }
+    }
+    ```
+- label: wrong row but right conclusion
+  answer:
+    ```text
+    H0: beta_min_fem = 0. H1: beta_min_fem != 0. From the table, min_fem is 0.5678 with standard error 0.1208, so t = 0.5678 / 0.1208 = 4.70. Since 4.70 > 1.96, reject H0. There is statistically significant evidence that the gender gap in course evaluations depends on minority status.
+    ```
+  grading:
+    ```json
+    {
+      "comment": "Wrong row but right conclusion.",
+      "uncertain": false,
+      "comment_uncertainty": "",
+      "criteria": {
+        "connects_question_to_interaction": true,
+        "correct_null_no_interaction": true,
+        "correct_two_sided_alternative": true,
+        "uses_interaction_regression_row": false,
+        "correct_t_statistic": false,
+        "correct_five_percent_rule": false,
+        "rejects_no_interaction_null": true,
+        "concludes_evidence_of_dependence": true,
+        "keeps_requested_scope_clear": true
+      }
+    }
+    ```
+- label: no credit
+  answer:
+    ```text
+    The null hypothesis is that there is no statistical significance between the groups. I cannot tell from the regression table, so there is no comment.
+    ```
+  grading:
+    ```json
+    {
+      "comment": "No credit.",
+      "uncertain": false,
+      "comment_uncertainty": "",
+      "criteria": {
+        "connects_question_to_interaction": false,
+        "correct_null_no_interaction": false,
+        "correct_two_sided_alternative": false,
+        "uses_interaction_regression_row": false,
+        "correct_t_statistic": false,
+        "correct_five_percent_rule": false,
+        "rejects_no_interaction_null": false,
+        "concludes_evidence_of_dependence": false,
+        "keeps_requested_scope_clear": false
+      }
+    }
+    ```
+- label: correct setup, wrong t-statistic
+  answer:
+    ```text
+    H0: beta_min_fem = 0. H1: beta_min_fem != 0. The interaction term min_fem is the relevant coefficient. t = -0.2469421 / 0.0854207 = -2.89. Since |-2.89| > 1.96, reject H0 at the 5% level. There is statistically significant evidence that the difference in average course evaluations between female and male instructors depends on minority status.
+    ```
+  grading:
+    ```json
+    {
+      "comment": "Correct setup, wrong t-statistic.",
+      "uncertain": false,
+      "comment_uncertainty": "",
+      "criteria": {
+        "connects_question_to_interaction": true,
+        "correct_null_no_interaction": true,
+        "correct_two_sided_alternative": true,
+        "uses_interaction_regression_row": true,
+        "correct_t_statistic": false,
+        "correct_five_percent_rule": true,
+        "rejects_no_interaction_null": true,
+        "concludes_evidence_of_dependence": true,
+        "keeps_requested_scope_clear": true
+      }
+    }
+    ```
+- label: hypotheses missing, correct conclusion
+  answer:
+    ```text
+    The relevant coefficient is min_fem. From the table, t = -2.12 and p = 0.035. Since p = 0.035 < 0.05, we reject at the 5% significance level. There is evidence that the difference in average course evaluations between female and male instructors depends on minority status.
+    ```
+  grading:
+    ```json
+    {
+      "comment": "Hypotheses missing, correct conclusion.",
+      "uncertain": false,
+      "comment_uncertainty": "",
+      "criteria": {
+        "connects_question_to_interaction": true,
+        "correct_null_no_interaction": false,
+        "correct_two_sided_alternative": false,
+        "uses_interaction_regression_row": true,
+        "correct_t_statistic": true,
+        "correct_five_percent_rule": true,
+        "rejects_no_interaction_null": true,
+        "concludes_evidence_of_dependence": true,
+        "keeps_requested_scope_clear": true
+      }
+    }
+    ```
+
+Return only a valid JSON object in exactly the format shown in the few-shot examples above. Put all rubric booleans under the top-level 'criteria' object, include the top-level 'uncertain' boolean for the whole grading decision, and do not include markdown fences or extra keys.

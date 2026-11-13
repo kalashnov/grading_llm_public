@@ -1,0 +1,7 @@
+openai
+pillow
+requests
+beautifulsoup4
+pyyaml
+google-cloud-vision   # ocr_gvision.py
+claude-agent-sdk      # generate_criteria.py

@@ -1,0 +1,6 @@
+# student data — never commit (submissions/har/question_pages ignored at root)
+data/grades/
+data/**/regrade_requests*
+data/**/question_graders*
+inputs/*
+*.log

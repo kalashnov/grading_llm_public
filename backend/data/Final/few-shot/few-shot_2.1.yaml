@@ -1,0 +1,280 @@
+examples:
+- label: full credit
+  answer: 'The marginal effect of firm size on rdintens is not constant — it changes
+    with firm size. To see why, take the derivative of rdintens with respect to sales:
+
+    d(rdintens)/d(sales) = 0.301 − 2(0.0070)·sales = 0.301 − 0.014·sales
+
+    This expression depends on sales, so the marginal effect is not a constant.
+
+
+    To test whether the quadratic term is statistically significant:
+
+    H₀: β₂ = 0
+
+    H₁: β₂ ≠ 0
+
+    α = 0.05 → critical value = 1.96 (two-tailed)
+
+
+    t = −0.0070 / 0.0033 = −2.12
+
+
+    |−2.12| = 2.12 > 1.96, so we reject H₀ at the 5% significance level.
+
+    The coefficient on sales² is statistically significant. Therefore, the marginal
+    effect of firm size on rdintens changes with firm size.'
+  grading:
+  - criterion_id: marginal_effect_not_constant
+    met: true
+  - criterion_id: justification_mentions_quadratic_or_derivative
+    met: true
+  - criterion_id: derivative_retains_sales_variable
+    met: true
+  - criterion_id: null_hypothesis_targets_beta2
+    met: true
+  - criterion_id: two_sided_alternative
+    met: true
+  - criterion_id: t_statistic_approx_2pt12
+    met: true
+  - criterion_id: correct_critical_value
+    met: true
+  - criterion_id: rejects_null_hypothesis
+    met: true
+  - criterion_id: correct_final_conclusion
+    met: true
+  - criterion_id: no_wrong_coefficient_test
+    met: true
+  - criterion_id: no_doubled_numerator_error
+    met: true
+- label: tests β₁ instead of β₂ (wrong coefficient)
+  answer: 'The marginal effect of firm size on rdintens changes with firm size.
+
+
+    H₀: β₁ = 0
+
+    H₁: β₁ ≠ 0
+
+
+    t-stat = 0.301 / 0.131 = 2.30 > 1.96
+
+
+    We reject the null hypothesis at the 5% significance level. It is statistically
+    significant that the marginal effect of firm size changes with firm size.'
+  grading:
+  - criterion_id: marginal_effect_not_constant
+    met: true
+  - criterion_id: justification_mentions_quadratic_or_derivative
+    met: false
+  - criterion_id: derivative_retains_sales_variable
+    met: false
+  - criterion_id: null_hypothesis_targets_beta2
+    met: false
+  - criterion_id: two_sided_alternative
+    met: true
+  - criterion_id: t_statistic_approx_2pt12
+    met: false
+  - criterion_id: correct_critical_value
+    met: true
+  - criterion_id: rejects_null_hypothesis
+    met: true
+  - criterion_id: correct_final_conclusion
+    met: true
+  - criterion_id: no_wrong_coefficient_test
+    met: false
+  - criterion_id: no_doubled_numerator_error
+    met: true
+- label: doubled numerator in t-statistic
+  answer: 'The marginal effect of firm size on rdintens is not constant. Taking the
+    derivative:
+
+    d(rdintens)/d(sales) = 0.301 − 2(0.0070)·sales = 0.301 − 0.014·sales
+
+    This depends on sales, so the marginal effect changes with firm size.
+
+
+    H₀: β_{sales²} = 0
+
+    H₁: β_{sales²} ≠ 0
+
+
+    t = 0.014 / 0.0033 = 4.24 > 1.96
+
+
+    Reject H₀. The marginal effect of firm size on rdintens is statistically significant
+    and changes with firm size.'
+  grading:
+  - criterion_id: marginal_effect_not_constant
+    met: true
+  - criterion_id: justification_mentions_quadratic_or_derivative
+    met: true
+  - criterion_id: derivative_retains_sales_variable
+    met: true
+  - criterion_id: null_hypothesis_targets_beta2
+    met: true
+  - criterion_id: two_sided_alternative
+    met: true
+  - criterion_id: t_statistic_approx_2pt12
+    met: false
+  - criterion_id: correct_critical_value
+    met: true
+  - criterion_id: rejects_null_hypothesis
+    met: true
+  - criterion_id: correct_final_conclusion
+    met: true
+  - criterion_id: no_wrong_coefficient_test
+    met: true
+  - criterion_id: no_doubled_numerator_error
+    met: false
+- label: fails to reject H₀ due to wrong comparison
+  answer: 'Marginal effect = d(rdintens)/d(sales) = 0.301 − 2(0.0070)·sales = 0.301
+    − 0.014·sales
+
+    It depends on sales, so it should change with firm size.
+
+
+    H₀: β₂ = 0
+
+    H₁: β₂ ≠ 0
+
+
+    t = −0.0070 / 0.0033 = −2.12
+
+
+    CV = 1.96 at 5% significance level.
+
+
+    Since −2.12 < 1.96, we fail to reject H₀. There is insufficient evidence at the
+    5% significance level to conclude the marginal effect changes with firm size.
+    The marginal effect is constant.'
+  grading:
+  - criterion_id: marginal_effect_not_constant
+    met: false
+  - criterion_id: justification_mentions_quadratic_or_derivative
+    met: true
+  - criterion_id: derivative_retains_sales_variable
+    met: true
+  - criterion_id: null_hypothesis_targets_beta2
+    met: true
+  - criterion_id: two_sided_alternative
+    met: true
+  - criterion_id: t_statistic_approx_2pt12
+    met: true
+  - criterion_id: correct_critical_value
+    met: true
+  - criterion_id: rejects_null_hypothesis
+    met: false
+  - criterion_id: correct_final_conclusion
+    met: false
+  - criterion_id: no_wrong_coefficient_test
+    met: true
+  - criterion_id: no_doubled_numerator_error
+    met: true
+- label: collapsed derivative to a number
+  answer: 'Marginal effect of firm size: d(rdintens)/d(sales) = 0.301 − 2(0.0070)
+    = 0.287
+
+
+    H₀: β_{sales²} = 0
+
+    H₁: β_{sales²} ≠ 0
+
+
+    CV = 1.96 at 5% significance level.
+
+
+    Since 0.287 < 1.96, we fail to reject H₀. The marginal effect of firm size on
+    rdintens is constant.'
+  grading:
+  - criterion_id: marginal_effect_not_constant
+    met: false
+  - criterion_id: justification_mentions_quadratic_or_derivative
+    met: true
+  - criterion_id: derivative_retains_sales_variable
+    met: false
+  - criterion_id: null_hypothesis_targets_beta2
+    met: true
+  - criterion_id: two_sided_alternative
+    met: true
+  - criterion_id: t_statistic_approx_2pt12
+    met: false
+  - criterion_id: correct_critical_value
+    met: true
+  - criterion_id: rejects_null_hypothesis
+    met: false
+  - criterion_id: correct_final_conclusion
+    met: false
+  - criterion_id: no_wrong_coefficient_test
+    met: true
+  - criterion_id: no_doubled_numerator_error
+    met: true
+
+- label: correct conclusion, no hypothesis test
+  answer: 'The marginal effect of firm size on rdintens is not constant because the
+    model includes a quadratic term (sales²). The marginal effect depends on the level
+    of sales, so it changes with firm size. Since the coefficient on sales² is negative,
+    the marginal effect of sales on rdintens decreases as firm size grows.'
+  grading:
+  - criterion_id: marginal_effect_not_constant
+    met: true
+  - criterion_id: justification_mentions_quadratic_or_derivative
+    met: true
+  - criterion_id: derivative_retains_sales_variable
+    met: false
+  - criterion_id: null_hypothesis_targets_beta2
+    met: false
+  - criterion_id: two_sided_alternative
+    met: false
+  - criterion_id: t_statistic_approx_2pt12
+    met: false
+  - criterion_id: correct_critical_value
+    met: false
+  - criterion_id: rejects_null_hypothesis
+    met: false
+  - criterion_id: correct_final_conclusion
+    met: true
+  - criterion_id: no_wrong_coefficient_test
+    met: true
+  - criterion_id: no_doubled_numerator_error
+    met: true
+
+- label: correct test on β₂, no derivative written
+  answer: 'The marginal effect of firm size on rdintens is not constant — it changes
+    with firm size because of the sales² term.
+
+
+    To test whether the quadratic term is significant:
+
+    H₀: β₂ = 0
+
+    H₁: β₂ ≠ 0
+
+
+    t = −0.0070 / 0.0033 = −2.12
+
+
+    |t| = 2.12 > 1.96, so we reject H₀ at the 5% significance level. The marginal
+    effect of firm size on rdintens is not constant.'
+  grading:
+  - criterion_id: marginal_effect_not_constant
+    met: true
+  - criterion_id: justification_mentions_quadratic_or_derivative
+    met: true
+  - criterion_id: derivative_retains_sales_variable
+    met: true
+  - criterion_id: null_hypothesis_targets_beta2
+    met: true
+  - criterion_id: two_sided_alternative
+    met: true
+  - criterion_id: t_statistic_approx_2pt12
+    met: true
+  - criterion_id: correct_critical_value
+    met: true
+  - criterion_id: rejects_null_hypothesis
+    met: true
+  - criterion_id: correct_final_conclusion
+    met: true
+  - criterion_id: no_wrong_coefficient_test
+    met: true
+  - criterion_id: no_doubled_numerator_error
+    met: true

@@ -1,0 +1,274 @@
+{
+  "examples": [
+    {
+      "label": "full credit",
+      "answer": "The marginal effect is the derivative of the fitted equation with respect to sales: d rdintens_hat / d sales = 0.301 + 2(-0.0070)sales = 0.301 - 0.014 sales. Since sales appears in the marginal effect, it is not constant; it would be constant only if the coefficient on sales^2 were zero. Test H0: beta_sales2 = 0 versus Ha: beta_sales2 != 0. The t statistic is -0.0070 / 0.0033 = -2.12. For a two-sided 5% test, the critical value is about +/-1.96, and |-2.12| > 1.96, so reject H0. There is statistically significant evidence that the marginal effect changes with firm size, and because the quadratic coefficient is negative it decreases as sales rises.",
+      "grading": [
+        {
+          "criterion_id": "states_effect_changes",
+          "met": true
+        },
+        {
+          "criterion_id": "sets_up_marginal_effect",
+          "met": true
+        },
+        {
+          "criterion_id": "correct_marginal_effect_formula",
+          "met": true
+        },
+        {
+          "criterion_id": "links_constancy_to_quadratic_term",
+          "met": true
+        },
+        {
+          "criterion_id": "tests_sales_squared_coefficient",
+          "met": true
+        },
+        {
+          "criterion_id": "states_two_sided_hypotheses",
+          "met": true
+        },
+        {
+          "criterion_id": "uses_correct_t_statistic",
+          "met": true
+        },
+        {
+          "criterion_id": "uses_five_percent_rule",
+          "met": true
+        },
+        {
+          "criterion_id": "rejects_sales_squared_null",
+          "met": true
+        },
+        {
+          "criterion_id": "connects_rejection_to_change",
+          "met": true
+        },
+        {
+          "criterion_id": "avoids_turning_point_substitute",
+          "met": true
+        },
+        {
+          "criterion_id": "direction_claim_consistent",
+          "met": true
+        }
+      ]
+    },
+    {
+      "label": "linear term test only",
+      "answer": "H0: beta_sales = 0 and H1: beta_sales != 0. The t statistic is 0.301 / 0.131 = 2.30, which is greater than 1.96 at the 5% significance level, so reject H0. This shows sales is significant, but the marginal effect of firm size is constant.",
+      "grading": [
+        {
+          "criterion_id": "states_effect_changes",
+          "met": false
+        },
+        {
+          "criterion_id": "sets_up_marginal_effect",
+          "met": false
+        },
+        {
+          "criterion_id": "correct_marginal_effect_formula",
+          "met": false
+        },
+        {
+          "criterion_id": "links_constancy_to_quadratic_term",
+          "met": false
+        },
+        {
+          "criterion_id": "tests_sales_squared_coefficient",
+          "met": false
+        },
+        {
+          "criterion_id": "states_two_sided_hypotheses",
+          "met": false
+        },
+        {
+          "criterion_id": "uses_correct_t_statistic",
+          "met": false
+        },
+        {
+          "criterion_id": "uses_five_percent_rule",
+          "met": true
+        },
+        {
+          "criterion_id": "rejects_sales_squared_null",
+          "met": false
+        },
+        {
+          "criterion_id": "connects_rejection_to_change",
+          "met": false
+        },
+        {
+          "criterion_id": "avoids_turning_point_substitute",
+          "met": true
+        },
+        {
+          "criterion_id": "direction_claim_consistent",
+          "met": true
+        }
+      ]
+    },
+    {
+      "label": "correct setup wrong sign decision",
+      "answer": "The marginal effect is d rdintens / d sales = 0.301 - 2(0.0070)sales = 0.301 - 0.014 sales. If the sales^2 coefficient were zero, the marginal effect would be constant, so test H0: beta_sales2 = 0 against H1: beta_sales2 != 0. t = -0.0070 / 0.0033 = -2.12. Since -2.12 is less than +1.96, fail to reject the null at 5%. Therefore there is not enough evidence that the marginal effect changes with firm size.",
+      "grading": [
+        {
+          "criterion_id": "states_effect_changes",
+          "met": false
+        },
+        {
+          "criterion_id": "sets_up_marginal_effect",
+          "met": true
+        },
+        {
+          "criterion_id": "correct_marginal_effect_formula",
+          "met": true
+        },
+        {
+          "criterion_id": "links_constancy_to_quadratic_term",
+          "met": true
+        },
+        {
+          "criterion_id": "tests_sales_squared_coefficient",
+          "met": true
+        },
+        {
+          "criterion_id": "states_two_sided_hypotheses",
+          "met": true
+        },
+        {
+          "criterion_id": "uses_correct_t_statistic",
+          "met": true
+        },
+        {
+          "criterion_id": "uses_five_percent_rule",
+          "met": false
+        },
+        {
+          "criterion_id": "rejects_sales_squared_null",
+          "met": false
+        },
+        {
+          "criterion_id": "connects_rejection_to_change",
+          "met": false
+        },
+        {
+          "criterion_id": "avoids_turning_point_substitute",
+          "met": true
+        },
+        {
+          "criterion_id": "direction_claim_consistent",
+          "met": true
+        }
+      ]
+    },
+    {
+      "label": "uses derivative coefficient as t numerator",
+      "answer": "The marginal effect is 0.301 - 0.014 sales, so it changes with firm size. The sales^2 term is what makes the slope depend on sales, so test H0: beta_sales2 = 0 versus H1: beta_sales2 != 0. I compute t = -0.014 / 0.0033 = -4.24. Since |t| is greater than 1.96, reject H0 at the 5% level. Therefore the marginal effect changes with firm size; larger sales makes the marginal effect larger.",
+      "grading": [
+        {
+          "criterion_id": "states_effect_changes",
+          "met": true
+        },
+        {
+          "criterion_id": "sets_up_marginal_effect",
+          "met": true
+        },
+        {
+          "criterion_id": "correct_marginal_effect_formula",
+          "met": true
+        },
+        {
+          "criterion_id": "links_constancy_to_quadratic_term",
+          "met": true
+        },
+        {
+          "criterion_id": "tests_sales_squared_coefficient",
+          "met": true
+        },
+        {
+          "criterion_id": "states_two_sided_hypotheses",
+          "met": true
+        },
+        {
+          "criterion_id": "uses_correct_t_statistic",
+          "met": false
+        },
+        {
+          "criterion_id": "uses_five_percent_rule",
+          "met": true
+        },
+        {
+          "criterion_id": "rejects_sales_squared_null",
+          "met": true
+        },
+        {
+          "criterion_id": "connects_rejection_to_change",
+          "met": true
+        },
+        {
+          "criterion_id": "avoids_turning_point_substitute",
+          "met": true
+        },
+        {
+          "criterion_id": "direction_claim_consistent",
+          "met": false
+        }
+      ]
+    },
+    {
+      "label": "turning point substitute",
+      "answer": "Differentiate the equation: marginal effect = 0.301 - 0.014 sales. Set the marginal effect equal to zero, so 0.301 - 0.014 sales = 0 and sales = 21.5. Since there is a turning point at this sales value, the marginal effect changes with firm size. I would use this turning point as the test.",
+      "grading": [
+        {
+          "criterion_id": "states_effect_changes",
+          "met": true
+        },
+        {
+          "criterion_id": "sets_up_marginal_effect",
+          "met": true
+        },
+        {
+          "criterion_id": "correct_marginal_effect_formula",
+          "met": true
+        },
+        {
+          "criterion_id": "links_constancy_to_quadratic_term",
+          "met": false
+        },
+        {
+          "criterion_id": "tests_sales_squared_coefficient",
+          "met": false
+        },
+        {
+          "criterion_id": "states_two_sided_hypotheses",
+          "met": false
+        },
+        {
+          "criterion_id": "uses_correct_t_statistic",
+          "met": false
+        },
+        {
+          "criterion_id": "uses_five_percent_rule",
+          "met": false
+        },
+        {
+          "criterion_id": "rejects_sales_squared_null",
+          "met": false
+        },
+        {
+          "criterion_id": "connects_rejection_to_change",
+          "met": false
+        },
+        {
+          "criterion_id": "avoids_turning_point_substitute",
+          "met": false
+        },
+        {
+          "criterion_id": "direction_claim_consistent",
+          "met": true
+        }
+      ]
+    }
+  ]
+}

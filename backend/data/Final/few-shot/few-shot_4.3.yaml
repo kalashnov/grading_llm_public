@@ -1,0 +1,172 @@
+examples:
+- label: full credit
+  answer: 'H0: beta_min_fem = 0. Ha: beta_min_fem != 0. The relevant term is the minority*female
+    interaction because the question asks whether the female-male evaluation gap changes
+    with minority status. t = (-0.2469421 - 0) / 0.1167427 = -2.12, so |t| = 2.12
+    > 1.96 at the 5% level. Reject H0. There is statistically significant evidence
+    that the difference in average course evaluations between female and male instructors
+    depends on minority status.'
+  grading:
+  - criterion_id: connects_question_to_interaction
+    met: true
+  - criterion_id: correct_null_no_interaction
+    met: true
+  - criterion_id: correct_two_sided_alternative
+    met: true
+  - criterion_id: uses_interaction_regression_row
+    met: true
+  - criterion_id: correct_t_statistic
+    met: true
+  - criterion_id: correct_five_percent_rule
+    met: true
+  - criterion_id: rejects_no_interaction_null
+    met: true
+  - criterion_id: concludes_evidence_of_dependence
+    met: true
+  - criterion_id: keeps_requested_scope_clear
+    met: true
+- label: right setup wrong decision
+  answer: 'H0: beta_min_fem = 0. H1: beta_min_fem != 0. For min_fem, t = -0.2469 /
+    0.1167 = -2.12. Since -2.12 is less than 1.96, fail to reject the null at 5%.
+    There is no statistically significant evidence that the difference in average
+    course evaluations between female and male instructors depends on minority status.'
+  grading:
+  - criterion_id: connects_question_to_interaction
+    met: true
+  - criterion_id: correct_null_no_interaction
+    met: true
+  - criterion_id: correct_two_sided_alternative
+    met: true
+  - criterion_id: uses_interaction_regression_row
+    met: true
+  - criterion_id: correct_t_statistic
+    met: true
+  - criterion_id: correct_five_percent_rule
+    met: false
+  - criterion_id: rejects_no_interaction_null
+    met: false
+  - criterion_id: concludes_evidence_of_dependence
+    met: false
+  - criterion_id: keeps_requested_scope_clear
+    met: true
+- label: tests minority main effect
+  answer: 'H0: beta_minority = 0. H1: beta_minority != 0. The minority coefficient
+    is -0.0393 with t = -0.46, and |-0.46| < 1.96, so we fail to reject. Minority
+    instructors do not have significantly different average course evaluations from
+    white instructors at the 5% level.'
+  grading:
+  - criterion_id: connects_question_to_interaction
+    met: false
+  - criterion_id: correct_null_no_interaction
+    met: false
+  - criterion_id: correct_two_sided_alternative
+    met: false
+  - criterion_id: uses_interaction_regression_row
+    met: false
+  - criterion_id: correct_t_statistic
+    met: false
+  - criterion_id: correct_five_percent_rule
+    met: false
+  - criterion_id: rejects_no_interaction_null
+    met: false
+  - criterion_id: concludes_evidence_of_dependence
+    met: false
+  - criterion_id: keeps_requested_scope_clear
+    met: false
+- label: wrong row but right conclusion
+  answer: 'H0: beta_min_fem = 0. H1: beta_min_fem != 0. From the table, min_fem is
+    0.5678 with standard error 0.1208, so t = 0.5678 / 0.1208 = 4.70. Since 4.70 >
+    1.96, reject H0. There is statistically significant evidence that the gender gap
+    in course evaluations depends on minority status.'
+  grading:
+  - criterion_id: connects_question_to_interaction
+    met: true
+  - criterion_id: correct_null_no_interaction
+    met: true
+  - criterion_id: correct_two_sided_alternative
+    met: true
+  - criterion_id: uses_interaction_regression_row
+    met: false
+  - criterion_id: correct_t_statistic
+    met: false
+  - criterion_id: correct_five_percent_rule
+    met: false
+  - criterion_id: rejects_no_interaction_null
+    met: true
+  - criterion_id: concludes_evidence_of_dependence
+    met: true
+  - criterion_id: keeps_requested_scope_clear
+    met: true
+- label: no credit
+  answer: The null hypothesis is that there is no statistical significance between
+    the groups. I cannot tell from the regression table, so there is no comment.
+  grading:
+  - criterion_id: connects_question_to_interaction
+    met: false
+  - criterion_id: correct_null_no_interaction
+    met: false
+  - criterion_id: correct_two_sided_alternative
+    met: false
+  - criterion_id: uses_interaction_regression_row
+    met: false
+  - criterion_id: correct_t_statistic
+    met: false
+  - criterion_id: correct_five_percent_rule
+    met: false
+  - criterion_id: rejects_no_interaction_null
+    met: false
+  - criterion_id: concludes_evidence_of_dependence
+    met: false
+  - criterion_id: keeps_requested_scope_clear
+    met: false
+
+- label: correct setup, wrong t-statistic
+  answer: 'H0: beta_min_fem = 0. H1: beta_min_fem != 0. The interaction term min_fem
+    is the relevant coefficient. t = -0.2469421 / 0.0854207 = -2.89. Since |-2.89|
+    > 1.96, reject H0 at the 5% level. There is statistically significant evidence
+    that the difference in average course evaluations between female and male instructors
+    depends on minority status.'
+  grading:
+  - criterion_id: connects_question_to_interaction
+    met: true
+  - criterion_id: correct_null_no_interaction
+    met: true
+  - criterion_id: correct_two_sided_alternative
+    met: true
+  - criterion_id: uses_interaction_regression_row
+    met: true
+  - criterion_id: correct_t_statistic
+    met: false
+  - criterion_id: correct_five_percent_rule
+    met: true
+  - criterion_id: rejects_no_interaction_null
+    met: true
+  - criterion_id: concludes_evidence_of_dependence
+    met: true
+  - criterion_id: keeps_requested_scope_clear
+    met: true
+
+- label: hypotheses missing, correct conclusion
+  answer: 'The relevant coefficient is min_fem. From the table, t = -2.12 and p =
+    0.035. Since p = 0.035 < 0.05, we reject at the 5% significance level. There
+    is evidence that the difference in average course evaluations between female and
+    male instructors depends on minority status.'
+  grading:
+  - criterion_id: connects_question_to_interaction
+    met: true
+  - criterion_id: correct_null_no_interaction
+    met: false
+  - criterion_id: correct_two_sided_alternative
+    met: false
+  - criterion_id: uses_interaction_regression_row
+    met: true
+  - criterion_id: correct_t_statistic
+    met: true
+  - criterion_id: correct_five_percent_rule
+    met: true
+  - criterion_id: rejects_no_interaction_null
+    met: true
+  - criterion_id: concludes_evidence_of_dependence
+    met: true
+  - criterion_id: keeps_requested_scope_clear
+    met: true

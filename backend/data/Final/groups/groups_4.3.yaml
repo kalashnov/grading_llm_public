@@ -1,0 +1,93 @@
+exam: Final
+id: '4.3'
+groups:
+  - name: "Full credit"
+    description: >
+      All components present and correct: recognizes interaction term, states H0 and H1,
+      uses correct row, computes correct t, applies correct decision rule, rejects H0,
+      and states the correct conclusion.
+    rule: >
+      connects_question_to_interaction AND
+      correct_null_no_interaction AND
+      correct_two_sided_alternative AND
+      uses_interaction_regression_row AND
+      correct_t_statistic AND
+      correct_five_percent_rule AND
+      rejects_no_interaction_null AND
+      concludes_evidence_of_dependence AND
+      keeps_requested_scope_clear
+
+  - name: "Correct setup, wrong decision"
+    description: >
+      Student correctly identifies the interaction term, states H0 and H1, uses the
+      right row, and computes t correctly, but fails to reject (e.g. compares -2.12
+      to 1.96 without taking absolute value).
+    rule: >
+      connects_question_to_interaction AND
+      correct_null_no_interaction AND
+      correct_two_sided_alternative AND
+      uses_interaction_regression_row AND
+      correct_t_statistic AND
+      NOT correct_five_percent_rule AND
+      NOT rejects_no_interaction_null
+
+  - name: "Correct setup, wrong t-statistic"
+    description: >
+      Student correctly identifies the interaction term, states H0 and H1, and uses
+      the right row, but miscalculates or misreports the t-statistic.
+    rule: >
+      connects_question_to_interaction AND
+      correct_null_no_interaction AND
+      uses_interaction_regression_row AND
+      NOT correct_t_statistic
+
+  - name: "Tests wrong coefficient"
+    description: >
+      Student tests the minority or female main effect instead of the min_fem
+      interaction term.
+    rule: >
+      NOT connects_question_to_interaction AND
+      NOT uses_interaction_regression_row AND
+      (correct_null_no_interaction OR correct_two_sided_alternative)
+
+  - name: "Wrong row, correct conclusion"
+    description: >
+      Student identifies the interaction as relevant and states H0/H1 correctly, but
+      pulls the wrong numbers from the table (e.g. onecredit row), yet still reaches
+      the correct conclusion.
+    rule: >
+      connects_question_to_interaction AND
+      correct_null_no_interaction AND
+      NOT uses_interaction_regression_row AND
+      NOT correct_t_statistic AND
+      concludes_evidence_of_dependence
+
+  - name: "Hypotheses missing or wrong, correct conclusion"
+    description: >
+      Student reaches the correct conclusion and uses the right row, but skips or
+      misspecifies H0 and/or H1.
+    rule: >
+      connects_question_to_interaction AND
+      uses_interaction_regression_row AND
+      correct_t_statistic AND
+      concludes_evidence_of_dependence AND
+      NOT (correct_null_no_interaction AND correct_two_sided_alternative)
+
+  - name: "Wrong or missing conclusion"
+    description: >
+      Student made some attempt (identified a coefficient, stated a hypothesis, or
+      computed a statistic) but the conclusion is wrong or absent.
+    rule: >
+      (connects_question_to_interaction OR correct_null_no_interaction OR correct_t_statistic) AND
+      NOT concludes_evidence_of_dependence AND
+      NOT rejects_no_interaction_null
+
+  - name: "Wrong/empty"
+    description: >
+      No meaningful attempt — no correct identification of the interaction, no correct
+      hypothesis, no correct statistic, no correct conclusion.
+    rule: >
+      NOT connects_question_to_interaction AND
+      NOT correct_null_no_interaction AND
+      NOT correct_t_statistic AND
+      NOT concludes_evidence_of_dependence

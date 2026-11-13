@@ -1,0 +1,15 @@
+exam: Final
+id: '3.3'
+groups:
+- name: "Fully correct"
+  rule: "(selects_stem_business_coefficients AND holds_gpa_constant AND respects_mutually_exclusive_majors AND sets_up_stem_minus_business AND computes_correct_difference AND interprets_stem_higher AND avoids_test_statistic_difference AND uses_correct_earnings_units AND shows_coefficient_work)"
+- name: "Right number, wrong sign/direction"
+  rule: "(computes_correct_difference AND avoids_test_statistic_difference AND NOT interprets_stem_higher)"
+- name: "Right number, wrong units"
+  rule: "(computes_correct_difference AND interprets_stem_higher AND avoids_test_statistic_difference AND NOT uses_correct_earnings_units)"
+- name: "Used t-stats / significance instead of coefficients"
+  rule: "(NOT avoids_test_statistic_difference)"
+- name: "Wrong setup (wrong quantities or subtraction)"
+  rule: "(avoids_test_statistic_difference AND shows_coefficient_work AND (NOT selects_stem_business_coefficients OR NOT holds_gpa_constant OR NOT respects_mutually_exclusive_majors OR NOT sets_up_stem_minus_business OR NOT computes_correct_difference))"
+- name: "No work shown / blank"
+  rule: "(NOT shows_coefficient_work)"

@@ -1,0 +1,130 @@
+{
+  "criteria": [
+    {
+      "id": "connects_question_to_interaction",
+      "question": "Does the answer recognize that the question is testing whether the female-male evaluation gap varies with minority status, so the relevant parameter is the coefficient on the minority-by-female interaction term?",
+      "accept": [
+        "States that the coefficient on min_fem or minority*female is the coefficient to test.",
+        "Explains that the female-male difference is beta_female plus beta_min_fem times minority.",
+        "Says the interaction term determines whether the gender gap depends on minority status."
+      ],
+      "reject": [
+        "Tests only the minority main effect or only the female main effect.",
+        "Treats the question as asking whether minority status affects evaluations in general.",
+        "Uses a product of the separate minority and female coefficients instead of the interaction coefficient."
+      ]
+    },
+    {
+      "id": "correct_null_no_interaction",
+      "question": "Does the answer state the null hypothesis as no interaction or no dependence of the female-male gap on minority status, equivalently beta_min_fem = 0?",
+      "accept": [
+        "H0: beta_min_fem = 0.",
+        "H0: the coefficient on minority*female is zero.",
+        "H0: the difference between female and male instructors' average evaluations does not depend on minority status."
+      ],
+      "reject": [
+        "H0: beta_minority = 0 or H0: beta_female = 0.",
+        "H0 compares beta_female to beta_min_fem or to the intercept.",
+        "H0 says the female-male gap does depend on minority status."
+      ]
+    },
+    {
+      "id": "correct_two_sided_alternative",
+      "question": "Does the answer state the alternative hypothesis as a two-sided interaction effect, equivalently beta_min_fem != 0 or the female-male gap differs by minority status?",
+      "accept": [
+        "Ha: beta_min_fem != 0.",
+        "Ha: the coefficient on minority*female is not zero.",
+        "Ha: the female-male evaluation difference depends on minority status."
+      ],
+      "reject": [
+        "Uses a one-sided alternative such as beta_min_fem > 0 or beta_min_fem < 0 without justification.",
+        "Uses an alternative about the minority main effect or female main effect only.",
+        "States the alternative as no dependence or no interaction."
+      ]
+    },
+    {
+      "id": "uses_interaction_regression_row",
+      "question": "Does the answer use the interaction-model output for the min_fem row, rather than a main-effect row or the initial model, when setting up the test?",
+      "accept": [
+        "Uses this version's reported min_fem coefficient, standard error, t-statistic, p-value, or confidence interval.",
+        "Refers to the row for min_fem, minority*female, or the interaction term in the second regression.",
+        "Uses the displayed interaction coefficient and robust standard error to form the test."
+      ],
+      "reject": [
+        "Bases the test on the minority row, female row, beauty row, onecredit row, or the first regression without the interaction.",
+        "Uses the F-statistic for the whole regression as the requested test statistic.",
+        "Computes the interaction by multiplying the separate minority and female coefficient estimates."
+      ]
+    },
+    {
+      "id": "correct_t_statistic",
+      "question": "Does the answer compute or report the appropriate t-statistic for testing beta_min_fem = 0, using this version's min_fem estimate divided by its robust standard error, with reasonable rounding?",
+      "accept": [
+        "Reports the t-statistic shown in the min_fem row, with either sign or absolute value handled correctly.",
+        "Computes t = (estimated beta_min_fem - 0) / SE(beta_min_fem).",
+        "Gives a numerically equivalent t-statistic after minor rounding or harmless OCR-style decimal issues."
+      ],
+      "reject": [
+        "Reports the coefficient itself as the t-statistic.",
+        "Uses the t-statistic for minority, female, onecredit, beauty, or the overall regression.",
+        "Gives a substantially different statistic from using the min_fem coefficient and standard error."
+      ]
+    },
+    {
+      "id": "correct_five_percent_rule",
+      "question": "Does the answer apply an appropriate 5% two-sided decision rule to the interaction test, such as comparing the absolute t-statistic to the 5% critical value, using the relevant p-value, or noting that the relevant confidence interval excludes zero?",
+      "accept": [
+        "Uses |t| greater than about 1.96, or the correct two-sided critical value for this version's degrees of freedom.",
+        "Uses the min_fem p-value and compares it to 0.05.",
+        "Uses the min_fem 95% confidence interval and notes that it excludes zero."
+      ],
+      "reject": [
+        "Treats a negative t-statistic as non-rejection merely because it is less than the positive critical value.",
+        "Uses a 1% rule, an F critical value, or another threshold that changes the decision.",
+        "Compares a p-value to 1 or 0.5 instead of 0.05."
+      ]
+    },
+    {
+      "id": "rejects_no_interaction_null",
+      "question": "Does the answer make the correct test decision to reject the null hypothesis of no interaction at the 5% significance level?",
+      "accept": [
+        "Reject H0 at the 5% level.",
+        "The interaction term is statistically significant at 5%, so reject the null.",
+        "The null of no dependence/no interaction is rejected."
+      ],
+      "reject": [
+        "Fails to reject H0.",
+        "Says the test is not statistically significant.",
+        "Gives both reject and fail-to-reject without making a clear correct decision."
+      ]
+    },
+    {
+      "id": "concludes_evidence_of_dependence",
+      "question": "Does the answer conclude that there is evidence at the 5% level that the difference in average course evaluations between female and male instructors depends on minority status?",
+      "accept": [
+        "There is evidence that the female-male evaluation gap depends on minority status.",
+        "The difference in average course evaluations between female and male instructors varies by minority status.",
+        "Yes, at the 5% level the gender gap in course evaluations depends on minority status."
+      ],
+      "reject": [
+        "Concludes there is no evidence that the female-male gap depends on minority status.",
+        "Concludes the gap does not depend on minority status.",
+        "Only says there is some difference between female and male instructors without linking the difference to minority status."
+      ]
+    },
+    {
+      "id": "keeps_requested_scope_clear",
+      "question": "Does the interpretation stay focused on the requested course-evaluation gender gap by minority status, rather than switching to a different outcome, group comparison, or main-effect claim?",
+      "accept": [
+        "Interprets the result as a minority-status difference in the female-versus-male course evaluation gap.",
+        "Mentions course evaluations, female versus male instructors, and minority status in the final interpretation.",
+        "Uses equivalent plain language such as gender gap in teaching evaluations varies by minority status."
+      ],
+      "reject": [
+        "Interprets the result as a tenure, earnings, career outcome, or student-performance result.",
+        "Concludes only that minority instructors differ from white instructors or that female instructors differ from male instructors.",
+        "States only that race and gender are related, correlated, or significant without tying it to the requested gender-gap dependence."
+      ]
+    }
+  ]
+}

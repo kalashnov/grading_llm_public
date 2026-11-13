@@ -1,0 +1,65 @@
+{
+  "type": "object",
+  "properties": {
+    "comment": {
+      "type": "string"
+    },
+    "uncertain": {
+      "type": "boolean"
+    },
+    "comment_uncertainty": {
+      "type": "string"
+    },
+    "criteria": {
+      "type": "object",
+      "properties": {
+        "selects_stem_business_coefficients": {
+          "type": "boolean"
+        },
+        "holds_gpa_constant": {
+          "type": "boolean"
+        },
+        "respects_mutually_exclusive_majors": {
+          "type": "boolean"
+        },
+        "sets_up_stem_minus_business": {
+          "type": "boolean"
+        },
+        "computes_correct_difference": {
+          "type": "boolean"
+        },
+        "interprets_stem_higher": {
+          "type": "boolean"
+        },
+        "avoids_test_statistic_difference": {
+          "type": "boolean"
+        },
+        "uses_correct_earnings_units": {
+          "type": "boolean"
+        },
+        "shows_coefficient_work": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "selects_stem_business_coefficients",
+        "holds_gpa_constant",
+        "respects_mutually_exclusive_majors",
+        "sets_up_stem_minus_business",
+        "computes_correct_difference",
+        "interprets_stem_higher",
+        "avoids_test_statistic_difference",
+        "uses_correct_earnings_units",
+        "shows_coefficient_work"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "comment",
+    "uncertain",
+    "comment_uncertainty",
+    "criteria"
+  ],
+  "additionalProperties": false
+}

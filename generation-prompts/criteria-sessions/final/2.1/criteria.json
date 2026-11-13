@@ -1,0 +1,172 @@
+{
+  "criteria": [
+    {
+      "id": "states_effect_changes",
+      "question": "Does the response state that the marginal effect of firm size on rdintens changes with sales rather than being constant?",
+      "accept": [
+        "The marginal effect is not constant; it changes with firm size.",
+        "The effect depends on sales.",
+        "The marginal effect varies with firm size."
+      ],
+      "reject": [
+        "The marginal effect is constant.",
+        "It does not change with sales.",
+        "REJECT only if the final answer clearly says the marginal effect is constant or gives no conclusion about constancy."
+      ]
+    },
+    {
+      "id": "sets_up_marginal_effect",
+      "question": "Does the response recognize that the marginal effect is the derivative or slope of the fitted equation with respect to sales?",
+      "accept": [
+        "Take the derivative with respect to sales.",
+        "ME = d rdintens_hat / d sales.",
+        "The marginal effect is the slope of the fitted regression in sales."
+      ],
+      "reject": [
+        "Only repeats the fitted regression without identifying a derivative, slope, or marginal effect.",
+        "Uses R-squared, SER, or visual quadratic shape alone to decide the answer.",
+        "REJECT only if there is no indication that the marginal effect is the derivative or slope with respect to sales."
+      ]
+    },
+    {
+      "id": "correct_marginal_effect_formula",
+      "question": "Does the response give the marginal effect in the form beta_sales + 2 * beta_sales_squared * sales, using this version's estimated coefficients up to minor arithmetic or OCR errors?",
+      "accept": [
+        "0.301 - 0.014 sales.",
+        "0.301 + 2(-0.0070)sales.",
+        "b1 + 2 b2 sales, where b2 is the coefficient on sales^2."
+      ],
+      "reject": [
+        "0.301 - 0.0070 sales as the full derivative.",
+        "0.301 - 2(0.0070) = 0.287 with no sales term.",
+        "REJECT only if the formula omits the factor of 2, drops the sales variable, or uses the wrong sign in a way that changes the marginal effect."
+      ]
+    },
+    {
+      "id": "links_constancy_to_quadratic_term",
+      "question": "Does the response explain that the marginal effect is constant only if the coefficient on sales^2 is zero?",
+      "accept": [
+        "If beta_sales^2 = 0, the marginal effect is constant.",
+        "We test the quadratic term because it determines whether the slope changes with sales.",
+        "Since sales remains in the derivative when the sales^2 coefficient is nonzero, the marginal effect depends on sales."
+      ],
+      "reject": [
+        "Says constancy depends on the intercept being zero.",
+        "Says constancy depends only on the linear sales coefficient being zero.",
+        "REJECT only if the answer links constancy to the wrong coefficient or does not connect the quadratic term to changing marginal effects."
+      ]
+    },
+    {
+      "id": "tests_sales_squared_coefficient",
+      "question": "Does the response set up the necessary hypothesis test for the coefficient on sales^2 rather than only for the linear sales coefficient?",
+      "accept": [
+        "Test the coefficient on sales^2.",
+        "Test beta2 where beta2 is identified as the sales squared coefficient.",
+        "May also mention the linear sales coefficient, but uses the sales squared coefficient for the constancy test."
+      ],
+      "reject": [
+        "Only tests H0: beta_sales = 0 using 0.301 and 0.131.",
+        "Tests only the intercept.",
+        "REJECT only if the tested coefficient is clearly not the coefficient on sales^2."
+      ]
+    },
+    {
+      "id": "states_two_sided_hypotheses",
+      "question": "Does the response state a null that the sales^2 coefficient equals zero and a two-sided alternative that it is not zero?",
+      "accept": [
+        "H0: beta_sales^2 = 0; Ha: beta_sales^2 != 0.",
+        "H0: beta2 = 0 and H1: beta2 is not zero, where beta2 is the quadratic term.",
+        "Null: the sales squared coefficient is zero; alternative: it differs from zero."
+      ],
+      "reject": [
+        "H0: beta_sales = 0 when beta_sales means the linear sales coefficient.",
+        "H0: beta_sales^2 <= 0; Ha: beta_sales^2 > 0.",
+        "REJECT only if the hypotheses are about the wrong coefficient or use a one-sided alternative as the main test."
+      ]
+    },
+    {
+      "id": "uses_correct_t_statistic",
+      "question": "Does the response compute the t statistic using this version's sales^2 coefficient divided by its own standard error, allowing either the signed value or absolute value?",
+      "accept": [
+        "t = -0.0070 / 0.0033 = -2.12.",
+        "|t| = 0.0070 / 0.0033 = 2.12.",
+        "Uses beta_hat_sales^2 / SE(beta_hat_sales^2), with minor rounding accepted."
+      ],
+      "reject": [
+        "t = 0.301 / 0.131 as the only test statistic.",
+        "t = 0.014 / 0.0033 = 4.24 as the only test statistic.",
+        "REJECT only if the numerator or denominator is clearly not the sales^2 coefficient and its standard error."
+      ]
+    },
+    {
+      "id": "uses_five_percent_rule",
+      "question": "Does the response use an appropriate 5% two-sided decision rule for the t test, such as comparing |t| to about 1.96 or using an equivalent p-value below 0.05?",
+      "accept": [
+        "At 5%, compare |t| to about 1.96.",
+        "|-2.12| > 1.96.",
+        "The p-value is below 0.05."
+      ],
+      "reject": [
+        "Uses a one-sided 5% rule as the decisive comparison.",
+        "Compares -2.12 only to +1.96 and fails to account for absolute value or the negative critical value.",
+        "REJECT only if the stated decision rule is clearly not an appropriate 5% two-sided test."
+      ]
+    },
+    {
+      "id": "rejects_sales_squared_null",
+      "question": "Does the response conclude from the test that the null hypothesis for the sales^2 coefficient should be rejected at the 5% level?",
+      "accept": [
+        "Reject H0 at 5%.",
+        "Since |t| exceeds the critical value, reject the null.",
+        "The null that the sales squared coefficient is zero is rejected."
+      ],
+      "reject": [
+        "Fail to reject H0.",
+        "Do not reject the null.",
+        "REJECT only if the stated test decision is clearly not rejection at the 5% level."
+      ]
+    },
+    {
+      "id": "connects_rejection_to_change",
+      "question": "Does the response connect rejecting the sales^2 null to the conclusion that there is statistically significant evidence that the marginal effect changes with firm size?",
+      "accept": [
+        "Reject H0, so the marginal effect is not constant.",
+        "Because the quadratic term is statistically significant, the effect changes with sales.",
+        "There is significant evidence that firm size's marginal effect on rdintens varies with firm size."
+      ],
+      "reject": [
+        "Rejects the null but concludes the marginal effect is constant.",
+        "Says only that sales has an effect, without tying the result to changing marginal effects.",
+        "REJECT only if the final inference does not follow from rejecting the sales^2 null."
+      ]
+    },
+    {
+      "id": "avoids_turning_point_substitute",
+      "question": "Does the response avoid replacing the required hypothesis test with a turning point, root, or specific sales value calculation?",
+      "accept": [
+        "Uses a t test of the sales squared coefficient.",
+        "Mentions a turning point only as extra information after testing the quadratic coefficient.",
+        "Does not solve 0.301 - 0.014 sales = 0 as the main test."
+      ],
+      "reject": [
+        "Solves for sales = 21.5 or another value and treats that as the hypothesis test.",
+        "Uses the quadratic formula instead of testing the sales squared coefficient.",
+        "REJECT only if a turning point or root calculation replaces the required coefficient test."
+      ]
+    },
+    {
+      "id": "direction_claim_consistent",
+      "question": "If the response states a direction for how the marginal effect changes, is that direction consistent with this version's negative sales^2 coefficient?",
+      "accept": [
+        "The marginal effect decreases as sales increases.",
+        "The slope changes in the direction implied by 2 times the sales^2 coefficient.",
+        "No directional claim is made."
+      ],
+      "reject": [
+        "Says the marginal effect increases with sales for this version.",
+        "Says larger firms have a larger marginal effect solely because the quadratic coefficient is negative.",
+        "REJECT only if an explicit direction claim contradicts the sign of this version's quadratic coefficient."
+      ]
+    }
+  ]
+}

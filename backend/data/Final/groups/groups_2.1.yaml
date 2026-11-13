@@ -1,0 +1,92 @@
+exam: Final
+id: '2.1'
+groups:
+  - name: "Full credit"
+    description: >
+      Correct derivative (or equivalent understanding via correct test setup),
+      correct H₀ targeting β₂, correct t ≈ 2.12, correct critical value,
+      correctly rejects H₀, and correct final conclusion.
+    rule: >
+      marginal_effect_not_constant AND
+      justification_mentions_quadratic_or_derivative AND
+      derivative_retains_sales_variable AND
+      null_hypothesis_targets_beta2 AND
+      t_statistic_approx_2pt12 AND
+      correct_critical_value AND
+      rejects_null_hypothesis AND
+      correct_final_conclusion AND
+      no_wrong_coefficient_test AND
+      no_doubled_numerator_error
+
+  - name: "Correct test, wrong or missing derivative"
+    description: >
+      Student correctly tests β₂ (t ≈ 2.12, rejects H₀, correct conclusion)
+      but collapsed the derivative to a single number or skipped it entirely.
+    rule: >
+      null_hypothesis_targets_beta2 AND
+      t_statistic_approx_2pt12 AND
+      correct_critical_value AND
+      rejects_null_hypothesis AND
+      correct_final_conclusion AND
+      no_wrong_coefficient_test AND
+      no_doubled_numerator_error AND
+      NOT derivative_retains_sales_variable
+
+  - name: "Correct setup, fails to reject"
+    description: >
+      Student correctly identifies β₂, sets up the test, and computes t ≈ 2.12,
+      but fails to reject H₀ or reaches the wrong conclusion (e.g. compares
+      −2.12 < 1.96 without taking absolute value).
+    rule: >
+      null_hypothesis_targets_beta2 AND
+      t_statistic_approx_2pt12 AND
+      no_wrong_coefficient_test AND
+      no_doubled_numerator_error AND
+      NOT rejects_null_hypothesis
+
+  - name: "Wrong coefficient tested (β₁)"
+    description: >
+      Student tests the coefficient on sales (β₁ ≈ 0.301, t ≈ 2.30) instead
+      of the sales² coefficient β₂.
+    rule: >
+      NOT no_wrong_coefficient_test
+
+  - name: "Doubled numerator error"
+    description: >
+      Student uses 0.014/0.0033 ≈ 4.24 as the t-statistic, having placed the
+      derivative coefficient (0.014) rather than the regression coefficient
+      (0.0070) in the numerator.
+    rule: >
+      NOT no_doubled_numerator_error AND
+      no_wrong_coefficient_test
+
+  - name: "Correct conclusion, no hypothesis test"
+    description: >
+      Student correctly states and justifies that the marginal effect is not
+      constant (via quadratic term or derivative) but skips the hypothesis test
+      entirely — no t-statistic or critical value computed.
+    rule: >
+      marginal_effect_not_constant AND
+      justification_mentions_quadratic_or_derivative AND
+      correct_final_conclusion AND
+      NOT t_statistic_approx_2pt12 AND
+      NOT null_hypothesis_targets_beta2
+
+  - name: "Wrong or missing conclusion"
+    description: >
+      Student attempted the test but reached the wrong conclusion, or stated
+      that the marginal effect is constant.
+    rule: >
+      NOT correct_final_conclusion AND
+      NOT marginal_effect_not_constant AND
+      null_hypothesis_targets_beta2
+
+  - name: "Wrong/empty"
+    description: >
+      No meaningful attempt — no correct hypothesis setup, no correct t-statistic,
+      no correct conclusion.
+    rule: >
+      NOT marginal_effect_not_constant AND
+      NOT null_hypothesis_targets_beta2 AND
+      NOT t_statistic_approx_2pt12 AND
+      NOT correct_final_conclusion

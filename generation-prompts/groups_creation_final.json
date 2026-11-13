@@ -1,0 +1,30 @@
+{
+  "2.1": [
+    "Full credit",
+    "Correct test, wrong or missing derivative",
+    "Correct setup, fails to reject",
+    "Wrong coefficient tested (β₁)",
+    "Doubled numerator error",
+    "Correct conclusion, no hypothesis test",
+    "Wrong or missing conclusion",
+    "Wrong/empty"
+  ],
+  "3.3": [
+    "Fully correct",
+    "Right number, wrong sign/direction",
+    "Right number, wrong units",
+    "Used t-stats / significance instead of coefficients",
+    "Wrong setup (wrong quantities or subtraction)",
+    "No work shown / blank"
+  ],
+  "4.3": [
+    "Full credit",
+    "Correct setup, wrong decision",
+    "Correct setup, wrong t-statistic",
+    "Tests wrong coefficient",
+    "Wrong row, correct conclusion",
+    "Hypotheses missing or wrong, correct conclusion",
+    "Wrong or missing conclusion",
+    "Wrong/empty"
+  ]
+}

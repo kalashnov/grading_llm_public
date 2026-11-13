@@ -1,0 +1,73 @@
+{
+  "type": "object",
+  "properties": {
+    "comment": {
+      "type": "string"
+    },
+    "uncertain": {
+      "type": "boolean"
+    },
+    "comment_uncertainty": {
+      "type": "string"
+    },
+    "criteria": {
+      "type": "object",
+      "properties": {
+        "marginal_effect_not_constant": {
+          "type": "boolean"
+        },
+        "justification_mentions_quadratic_or_derivative": {
+          "type": "boolean"
+        },
+        "derivative_retains_sales_variable": {
+          "type": "boolean"
+        },
+        "null_hypothesis_targets_beta2": {
+          "type": "boolean"
+        },
+        "two_sided_alternative": {
+          "type": "boolean"
+        },
+        "t_statistic_approx_2pt12": {
+          "type": "boolean"
+        },
+        "correct_critical_value": {
+          "type": "boolean"
+        },
+        "rejects_null_hypothesis": {
+          "type": "boolean"
+        },
+        "correct_final_conclusion": {
+          "type": "boolean"
+        },
+        "no_wrong_coefficient_test": {
+          "type": "boolean"
+        },
+        "no_doubled_numerator_error": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "marginal_effect_not_constant",
+        "justification_mentions_quadratic_or_derivative",
+        "derivative_retains_sales_variable",
+        "null_hypothesis_targets_beta2",
+        "two_sided_alternative",
+        "t_statistic_approx_2pt12",
+        "correct_critical_value",
+        "rejects_null_hypothesis",
+        "correct_final_conclusion",
+        "no_wrong_coefficient_test",
+        "no_doubled_numerator_error"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "comment",
+    "uncertain",
+    "comment_uncertainty",
+    "criteria"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,65 @@
+{
+  "type": "object",
+  "properties": {
+    "comment": {
+      "type": "string"
+    },
+    "uncertain": {
+      "type": "boolean"
+    },
+    "comment_uncertainty": {
+      "type": "string"
+    },
+    "criteria": {
+      "type": "object",
+      "properties": {
+        "connects_question_to_interaction": {
+          "type": "boolean"
+        },
+        "correct_null_no_interaction": {
+          "type": "boolean"
+        },
+        "correct_two_sided_alternative": {
+          "type": "boolean"
+        },
+        "uses_interaction_regression_row": {
+          "type": "boolean"
+        },
+        "correct_t_statistic": {
+          "type": "boolean"
+        },
+        "correct_five_percent_rule": {
+          "type": "boolean"
+        },
+        "rejects_no_interaction_null": {
+          "type": "boolean"
+        },
+        "concludes_evidence_of_dependence": {
+          "type": "boolean"
+        },
+        "keeps_requested_scope_clear": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "connects_question_to_interaction",
+        "correct_null_no_interaction",
+        "correct_two_sided_alternative",
+        "uses_interaction_regression_row",
+        "correct_t_statistic",
+        "correct_five_percent_rule",
+        "rejects_no_interaction_null",
+        "concludes_evidence_of_dependence",
+        "keeps_requested_scope_clear"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "comment",
+    "uncertain",
+    "comment_uncertainty",
+    "criteria"
+  ],
+  "additionalProperties": false
+}

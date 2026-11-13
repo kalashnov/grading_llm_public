@@ -1,0 +1,111 @@
+examples:
+- label: full_credit
+  answer: Holding GPA constant, STEM - Business = beta_STEM - beta_Business = 12.4
+    - 7.8 = 4.6. Since earnings are measured in thousands of dollars, STEM majors
+    are predicted to earn $4,600 more per year than Business majors.
+  grading:
+  - criterion_id: selects_stem_business_coefficients
+    met: true
+  - criterion_id: holds_gpa_constant
+    met: true
+  - criterion_id: respects_mutually_exclusive_majors
+    met: true
+  - criterion_id: sets_up_stem_minus_business
+    met: true
+  - criterion_id: computes_correct_difference
+    met: true
+  - criterion_id: interprets_stem_higher
+    met: true
+  - criterion_id: avoids_test_statistic_difference
+    met: true
+  - criterion_id: uses_correct_earnings_units
+    met: true
+  - criterion_id: shows_coefficient_work
+    met: true
+- label: terse_correct_work
+  answer: 12.4 - 7.8 = 4.6
+  grading:
+  - criterion_id: selects_stem_business_coefficients
+    met: true
+  - criterion_id: holds_gpa_constant
+    met: true
+  - criterion_id: respects_mutually_exclusive_majors
+    met: true
+  - criterion_id: sets_up_stem_minus_business
+    met: true
+  - criterion_id: computes_correct_difference
+    met: true
+  - criterion_id: interprets_stem_higher
+    met: false
+  - criterion_id: avoids_test_statistic_difference
+    met: true
+  - criterion_id: uses_correct_earnings_units
+    met: true
+  - criterion_id: shows_coefficient_work
+    met: true
+- label: correct_subtraction_wrong_units
+  answer: STEM majors have 12.4 and business majors have 7.8, so 12.4 - 7.8 = 4.6.
+    STEM is 4.6 percentage points higher, about $460 more.
+  grading:
+  - criterion_id: selects_stem_business_coefficients
+    met: true
+  - criterion_id: holds_gpa_constant
+    met: true
+  - criterion_id: respects_mutually_exclusive_majors
+    met: true
+  - criterion_id: sets_up_stem_minus_business
+    met: true
+  - criterion_id: computes_correct_difference
+    met: true
+  - criterion_id: interprets_stem_higher
+    met: true
+  - criterion_id: avoids_test_statistic_difference
+    met: true
+  - criterion_id: uses_correct_earnings_units
+    met: false
+  - criterion_id: shows_coefficient_work
+    met: true
+- label: t_statistic_difference
+  answer: t_STEM = 12.4 / 3.1 = 4.00 and t_Business = 7.8 / 2.8 = 2.79, so the difference
+    is 4.00 - 2.79 = 1.21. STEM is higher by 1.21 points.
+  grading:
+  - criterion_id: selects_stem_business_coefficients
+    met: false
+  - criterion_id: holds_gpa_constant
+    met: false
+  - criterion_id: respects_mutually_exclusive_majors
+    met: false
+  - criterion_id: sets_up_stem_minus_business
+    met: false
+  - criterion_id: computes_correct_difference
+    met: false
+  - criterion_id: interprets_stem_higher
+    met: true
+  - criterion_id: avoids_test_statistic_difference
+    met: false
+  - criterion_id: uses_correct_earnings_units
+    met: false
+  - criterion_id: shows_coefficient_work
+    met: false
+- label: adds_coefficients
+  answer: The two major coefficients are 12.4 for STEM and 7.8 for Business. The difference
+    between the majors is beta_STEM + beta_Business = 12.4 + 7.8 = 20.2 thousand dollars.
+  grading:
+  - criterion_id: selects_stem_business_coefficients
+    met: true
+  - criterion_id: holds_gpa_constant
+    met: true
+  - criterion_id: respects_mutually_exclusive_majors
+    met: false
+  - criterion_id: sets_up_stem_minus_business
+    met: false
+  - criterion_id: computes_correct_difference
+    met: false
+  - criterion_id: interprets_stem_higher
+    met: false
+  - criterion_id: avoids_test_statistic_difference
+    met: true
+  - criterion_id: uses_correct_earnings_units
+    met: true
+  - criterion_id: shows_coefficient_work
+    met: true

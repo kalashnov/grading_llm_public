@@ -1,0 +1,399 @@
+Here is the problem that was given to the student:
+```text
+Economists are interested in the relationship between firm size – often
+measured by annual sales – and spending in research and development (R&D).
+Using data on US firms in the chemical industry, we regress rdintens, R&D
+spending as a percent of sales, on sales (firm sales in billions of dollars)
+and sales^2. The variable rdintens is measured in percentage points; for
+example, rdintens = 9 means that R&D spending is 9% of the firm's sales. The
+following estimated regression was obtained:
+
+  rdintens_hat = 2.613 + 0.301*sales - 0.0070*sales^2
+      standard errors:  intercept 0.324,  sales 0.131,  sales^2 0.0033
+  R^2 = 0.148,  SER = 1.788
+
+Is the marginal effect of firm size (measured by sales) on rdintens constant,
+or does it change with firm size (sales)? Justify. Set up and perform the
+necessary hypothesis test. Use a 5% significance level for the test.
+```
+
+SOLUTION:
+```text
+The marginal effect is not constant; it changes with firm size because of the
+quadratic term:
+
+  d(rdintens)/d(sales) = 0.301 - 2*(0.0070)*sales = 0.301 - 0.014*sales
+
+This depends on sales, so the relationship is nonlinear. Test the quadratic
+coefficient:
+
+  H0: beta_2 = 0   (marginal effect is constant / linear)
+  H1: beta_2 != 0  (marginal effect changes with sales)
+
+  t = -0.0070 / 0.0033 = -2.12
+
+|t| = 2.12 > 1.96 (5% two-sided critical value), so reject H0. The coefficient on
+sales^2 is statistically significant: the marginal effect of sales on rdintens is
+not constant.
+```
+
+GRADING PHILOSOPHY: Award credit generously when the student demonstrates
+conceptual understanding, even if their wording is informal, imprecise, or
+non-standard — the goal is to assess whether the student grasps the underlying
+idea, not whether they have memorized exact textbook phrasing or formal
+terminology, so plain-language equivalents are fully acceptable. Identify the
+key skill being tested and reward any correct path to it: accept any
+algebraically equivalent setup or valid computational method, allow students
+to carry forward their own answer from an earlier part, and apply reasonable
+tolerance for rounding. Minor arithmetic errors that do not reflect a
+conceptual misunderstanding should not forfeit credit for method criteria,
+and where the question explicitly demands something specific (such as units),
+require it while still crediting approximate or informal descriptions of its
+meaning. Treat error-detection criteria conservatively — only flag an error
+when the student clearly and explicitly makes it, allow for minor mistakes, that do not show their misunderstanding. When in doubt, give the student the benefit of the doubt.
+
+NOTE ON OCR: The student answers you receive are machine transcriptions of
+handwritten work and may contain transcription errors — misread digits that
+look plausible but are wrong, dropped or misplaced decimal points, two numbers
+merged into one or one number split apart, garbled 2-D math (fractions,
+exponents, subscripts), leftover crossed-out text, and mishandled math symbols
+(e.g. a Greek beta written as "B"). Genuinely illegible parts may be marked
+[illegible]. When a transcription looks garbled, inconsistent, or unhelpful,
+refer directly to the answer image rather than grading the text as written. If
+real doubt remains about how to interpret the student's input, do not guess —
+report that uncertainty in the appropriate fields. For example:
+- dropped or misplaced decimal point: "0.439" -> "0439" or "439"; "0.05" ->
+  "095"; "0.013" -> "0013";
+- leading "0." turned into a digit: "0.489" -> "6489";
+- two adjacent numbers merged into one: "0.439  0.489" -> "0439 0489" or "6928";
+- one number split across lines/tokens: "0.01276" -> "0" / "01276";
+- a single digit misread, producing a plausible but wrong number: "0.464" ->
+  "0.444", "0.439" -> "0.937", "0.013" -> "0.913", "26.81" -> "26.31" (common
+  digit confusions: 4<->9, 9<->0<->6, 1<->7, 3<->8, 5<->6).
+
+I want you to grade the answer of the student you just transcribed according to the following criteria:
+  1. [marginal_effect_not_constant] C1: Does the student state that the marginal effect of firm size (sales) on rdintens is NOT constant?
+     - ACCEPT: Not constant; it changes with firm size.
+     - ACCEPT: The marginal effect varies with sales.
+     - ACCEPT: The effect depends on the level of sales, so it is not constant.
+     - ACCEPT: It changes with firm size because the derivative depends on sales.
+     - REJECT: The marginal effect IS constant.
+     - REJECT: It does not change with firm size.
+     - REJECT: Student correctly rejects H0 but then states the marginal effect is constant as their final answer.
+
+  2. [justification_mentions_quadratic_or_derivative] C2: Does the student justify the non-constancy by referencing the quadratic term (sales squared), the nonlinearity of the model, or by computing a derivative that depends on sales?
+     - ACCEPT: Because of the sales squared term, the derivative depends on sales.
+     - ACCEPT: Taking d(rdintens)/d(sales) = 0.301 minus 0.014 times sales, which includes sales.
+     - ACCEPT: The model is quadratic so the marginal effect is not constant.
+     - ACCEPT: The slope changes with sales because there is a sales-squared regressor.
+     - ACCEPT: The rate of change is not constant because it is a quadratic equation.
+     - REJECT: Student merely asserts not constant with no reasoning or derivation.
+     - REJECT: Student restates the regression equation but does not explain why the marginal effect changes.
+
+  3. [derivative_retains_sales_variable] C3: Does the student either write a derivative that retains sales as a variable, OR set up the correct hypothesis test on beta2 (the sales-squared coefficient), demonstrating understanding that non-constancy is driven by the quadratic term?
+     - ACCEPT: 0.301 minus 0.014 times sales (derivative retains sales as a variable).
+     - ACCEPT: 0.301 minus 2 times 0.0070 times sales.
+     - ACCEPT: beta1 plus 2 times beta2 times sales with values substituted but sales kept as a variable.
+     - ACCEPT: Student does not write the derivative but sets up H0 beta2 = 0 and computes t = 0.0070/0.0033, implying correct understanding.
+     - REJECT: Student writes 0.301 minus 2 times 0.0070 = 0.287 (drops the sales variable) AND does not correctly test beta2.
+     - REJECT: Student writes only 0.301 as the marginal effect AND does not correctly test beta2.
+
+  4. [null_hypothesis_targets_beta2] C4: Does the student set up the null hypothesis as the coefficient on sales-squared (beta2 approx -0.0070) equals zero?
+     - ACCEPT: H0: beta2 = 0
+     - ACCEPT: H0: beta_sales_squared = 0
+     - ACCEPT: Null is that the quadratic coefficient is zero.
+     - ACCEPT: H0 is vague but the student uses t = 0.0070/0.0033, showing they are testing beta2.
+     - REJECT: Student explicitly sets up H0 for beta1 (coefficient on sales = 0.301) AND uses 0.301/0.131 as the t-statistic.
+     - REJECT: Student explicitly tests only the intercept beta0.
+
+  5. [two_sided_alternative] C5: Does the student use a two-sided alternative hypothesis (beta2 not equal to 0)?
+     - ACCEPT: H1: beta2 not equal to 0
+     - ACCEPT: Two-tailed test at 5% significance.
+     - ACCEPT: Student does not state H1 explicitly but uses CV = 1.96, implying a two-tailed test.
+     - REJECT: REJECT only if the student explicitly states a one-sided alternative AND uses a one-tailed critical value (e.g. 1.645) that changes the reject/fail-to-reject decision.
+
+  6. [t_statistic_approx_2pt12] C6: Does the student compute a t-statistic of approximately plus or minus 2.12 (= |0.0070 / 0.0033|)?
+     - ACCEPT: t = 2.12
+     - ACCEPT: t = minus 2.12
+     - ACCEPT: t approximately 2.121
+     - ACCEPT: t = 0.070/0.033 = 2.12 (OCR dropped leading zeros but same ratio)
+     - ACCEPT: Any value whose absolute value is between 2.10 and 2.15
+     - REJECT: t approximately 2.30 (used 0.301/0.131, wrong coefficient)
+     - REJECT: t approximately 4.24 (used 0.014/0.0033, doubled the numerator)
+     - REJECT: t approximately 21 (used wrong SE such as 0.00033)
+     - REJECT: Any value whose absolute value is not close to 2.12 and cannot be attributed to rounding or OCR error
+
+  7. [correct_critical_value] C7: Does the student use a critical value of approximately 1.96 for the two-tailed 5% significance test?
+     - ACCEPT: CV = 1.96
+     - ACCEPT: plus or minus 1.96
+     - ACCEPT: Critical value at 5% two-tailed = 1.96
+     - ACCEPT: Student compares t = 2.12 to 1.96 (implicit use of 1.96)
+     - REJECT: REJECT only if the student uses a clearly wrong critical value (e.g. 1.645 for a one-tailed test) AND that wrong value changes their reject/fail-to-reject conclusion.
+
+  8. [rejects_null_hypothesis] C8: Does the student correctly reject H0 at the 5% significance level?
+     - ACCEPT: Reject H0 / reject the null.
+     - ACCEPT: Statistically significant at the 5% level.
+     - ACCEPT: Absolute value of t = 2.12 > 1.96, so reject.
+     - ACCEPT: The result is significant; reject the null.
+     - REJECT: Student explicitly states fail to reject H0.
+     - REJECT: Student explicitly states cannot reject H0.
+     - REJECT: Student states not statistically significant.
+     - REJECT: Student correctly computes t approximately 2.12 > 1.96 but then explicitly concludes fail to reject.
+
+  9. [correct_final_conclusion] C9: Does the student conclude (as a final answer) that the marginal effect of firm size on rdintens changes with firm size (is not constant)?
+     - ACCEPT: The marginal effect changes with firm size.
+     - ACCEPT: The marginal effect is not constant.
+     - ACCEPT: rdintens changes with firm size (sales).
+     - ACCEPT: The coefficient on sales-squared is statistically significant, so the marginal effect varies with firm size.
+     - REJECT: Student final statement is that the marginal effect IS constant.
+     - REJECT: Student says the marginal effect does not change with firm size.
+     - REJECT: Student rejects H0 but then writes the marginal effect is constant as the conclusion.
+
+  10. [no_wrong_coefficient_test] C10: Does the student avoid the error of testing the coefficient on sales (beta1 approx 0.301, SE approx 0.131, t approx 2.30) as their primary test?
+     - ACCEPT: Student tests beta2 (the sales-squared coefficient) with t approximately 2.12.
+     - ACCEPT: Student uses 0.0070/0.0033 as the t-statistic.
+     - REJECT: REJECT only if the student clearly and primarily uses 0.301/0.131 approximately 2.30 as their t-statistic to decide whether the marginal effect is constant, without also correctly testing beta2.
+
+  11. [no_doubled_numerator_error] C11: Does the student avoid the error of placing the derivative coefficient 2 times 0.0070 = 0.014 in the numerator of the t-statistic (which yields t approximately 4.24)?
+     - ACCEPT: t approximately 2.12 (uses 0.0070 as the numerator)
+     - ACCEPT: Any t-statistic not approximately equal to 4.24 in absolute value
+     - REJECT: REJECT only if the student clearly computes 0.014/0.0033 approximately 4.24 as their t-statistic, having placed the derivative coefficient (0.014) rather than the regression coefficient (0.0070) in the numerator.
+
+FEW-SHOT EXAMPLES:
+- label: full credit
+  answer:
+    ```text
+    The marginal effect of firm size on rdintens is not constant — it changes with firm size. To see why, take the derivative of rdintens with respect to sales:
+    d(rdintens)/d(sales) = 0.301 − 2(0.0070)·sales = 0.301 − 0.014·sales
+    This expression depends on sales, so the marginal effect is not a constant.
+
+    To test whether the quadratic term is statistically significant:
+    H₀: β₂ = 0
+    H₁: β₂ ≠ 0
+    α = 0.05 → critical value = 1.96 (two-tailed)
+
+    t = −0.0070 / 0.0033 = −2.12
+
+    |−2.12| = 2.12 > 1.96, so we reject H₀ at the 5% significance level.
+    The coefficient on sales² is statistically significant. Therefore, the marginal effect of firm size on rdintens changes with firm size.
+    ```
+  grading:
+    ```json
+    {
+      "comment": "Full credit.",
+      "uncertain": false,
+      "comment_uncertainty": "",
+      "criteria": {
+        "marginal_effect_not_constant": true,
+        "justification_mentions_quadratic_or_derivative": true,
+        "derivative_retains_sales_variable": true,
+        "null_hypothesis_targets_beta2": true,
+        "two_sided_alternative": true,
+        "t_statistic_approx_2pt12": true,
+        "correct_critical_value": true,
+        "rejects_null_hypothesis": true,
+        "correct_final_conclusion": true,
+        "no_wrong_coefficient_test": true,
+        "no_doubled_numerator_error": true
+      }
+    }
+    ```
+- label: tests β₁ instead of β₂ (wrong coefficient)
+  answer:
+    ```text
+    The marginal effect of firm size on rdintens changes with firm size.
+
+    H₀: β₁ = 0
+    H₁: β₁ ≠ 0
+
+    t-stat = 0.301 / 0.131 = 2.30 > 1.96
+
+    We reject the null hypothesis at the 5% significance level. It is statistically significant that the marginal effect of firm size changes with firm size.
+    ```
+  grading:
+    ```json
+    {
+      "comment": "Tests β₁ instead of β₂ (wrong coefficient).",
+      "uncertain": false,
+      "comment_uncertainty": "",
+      "criteria": {
+        "marginal_effect_not_constant": true,
+        "justification_mentions_quadratic_or_derivative": false,
+        "derivative_retains_sales_variable": false,
+        "null_hypothesis_targets_beta2": false,
+        "two_sided_alternative": true,
+        "t_statistic_approx_2pt12": false,
+        "correct_critical_value": true,
+        "rejects_null_hypothesis": true,
+        "correct_final_conclusion": true,
+        "no_wrong_coefficient_test": false,
+        "no_doubled_numerator_error": true
+      }
+    }
+    ```
+- label: doubled numerator in t-statistic
+  answer:
+    ```text
+    The marginal effect of firm size on rdintens is not constant. Taking the derivative:
+    d(rdintens)/d(sales) = 0.301 − 2(0.0070)·sales = 0.301 − 0.014·sales
+    This depends on sales, so the marginal effect changes with firm size.
+
+    H₀: β_{sales²} = 0
+    H₁: β_{sales²} ≠ 0
+
+    t = 0.014 / 0.0033 = 4.24 > 1.96
+
+    Reject H₀. The marginal effect of firm size on rdintens is statistically significant and changes with firm size.
+    ```
+  grading:
+    ```json
+    {
+      "comment": "Doubled numerator in t-statistic.",
+      "uncertain": false,
+      "comment_uncertainty": "",
+      "criteria": {
+        "marginal_effect_not_constant": true,
+        "justification_mentions_quadratic_or_derivative": true,
+        "derivative_retains_sales_variable": true,
+        "null_hypothesis_targets_beta2": true,
+        "two_sided_alternative": true,
+        "t_statistic_approx_2pt12": false,
+        "correct_critical_value": true,
+        "rejects_null_hypothesis": true,
+        "correct_final_conclusion": true,
+        "no_wrong_coefficient_test": true,
+        "no_doubled_numerator_error": false
+      }
+    }
+    ```
+- label: fails to reject H₀ due to wrong comparison
+  answer:
+    ```text
+    Marginal effect = d(rdintens)/d(sales) = 0.301 − 2(0.0070)·sales = 0.301 − 0.014·sales
+    It depends on sales, so it should change with firm size.
+
+    H₀: β₂ = 0
+    H₁: β₂ ≠ 0
+
+    t = −0.0070 / 0.0033 = −2.12
+
+    CV = 1.96 at 5% significance level.
+
+    Since −2.12 < 1.96, we fail to reject H₀. There is insufficient evidence at the 5% significance level to conclude the marginal effect changes with firm size. The marginal effect is constant.
+    ```
+  grading:
+    ```json
+    {
+      "comment": "Fails to reject H₀ due to wrong comparison.",
+      "uncertain": false,
+      "comment_uncertainty": "",
+      "criteria": {
+        "marginal_effect_not_constant": false,
+        "justification_mentions_quadratic_or_derivative": true,
+        "derivative_retains_sales_variable": true,
+        "null_hypothesis_targets_beta2": true,
+        "two_sided_alternative": true,
+        "t_statistic_approx_2pt12": true,
+        "correct_critical_value": true,
+        "rejects_null_hypothesis": false,
+        "correct_final_conclusion": false,
+        "no_wrong_coefficient_test": true,
+        "no_doubled_numerator_error": true
+      }
+    }
+    ```
+- label: collapsed derivative to a number
+  answer:
+    ```text
+    Marginal effect of firm size: d(rdintens)/d(sales) = 0.301 − 2(0.0070) = 0.287
+
+    H₀: β_{sales²} = 0
+    H₁: β_{sales²} ≠ 0
+
+    CV = 1.96 at 5% significance level.
+
+    Since 0.287 < 1.96, we fail to reject H₀. The marginal effect of firm size on rdintens is constant.
+    ```
+  grading:
+    ```json
+    {
+      "comment": "Collapsed derivative to a number.",
+      "uncertain": false,
+      "comment_uncertainty": "",
+      "criteria": {
+        "marginal_effect_not_constant": false,
+        "justification_mentions_quadratic_or_derivative": true,
+        "derivative_retains_sales_variable": false,
+        "null_hypothesis_targets_beta2": true,
+        "two_sided_alternative": true,
+        "t_statistic_approx_2pt12": false,
+        "correct_critical_value": true,
+        "rejects_null_hypothesis": false,
+        "correct_final_conclusion": false,
+        "no_wrong_coefficient_test": true,
+        "no_doubled_numerator_error": true
+      }
+    }
+    ```
+- label: correct conclusion, no hypothesis test
+  answer:
+    ```text
+    The marginal effect of firm size on rdintens is not constant because the model includes a quadratic term (sales²). The marginal effect depends on the level of sales, so it changes with firm size. Since the coefficient on sales² is negative, the marginal effect of sales on rdintens decreases as firm size grows.
+    ```
+  grading:
+    ```json
+    {
+      "comment": "Correct conclusion, no hypothesis test.",
+      "uncertain": false,
+      "comment_uncertainty": "",
+      "criteria": {
+        "marginal_effect_not_constant": true,
+        "justification_mentions_quadratic_or_derivative": true,
+        "derivative_retains_sales_variable": false,
+        "null_hypothesis_targets_beta2": false,
+        "two_sided_alternative": false,
+        "t_statistic_approx_2pt12": false,
+        "correct_critical_value": false,
+        "rejects_null_hypothesis": false,
+        "correct_final_conclusion": true,
+        "no_wrong_coefficient_test": true,
+        "no_doubled_numerator_error": true
+      }
+    }
+    ```
+- label: correct test on β₂, no derivative written
+  answer:
+    ```text
+    The marginal effect of firm size on rdintens is not constant — it changes with firm size because of the sales² term.
+
+    To test whether the quadratic term is significant:
+    H₀: β₂ = 0
+    H₁: β₂ ≠ 0
+
+    t = −0.0070 / 0.0033 = −2.12
+
+    |t| = 2.12 > 1.96, so we reject H₀ at the 5% significance level. The marginal effect of firm size on rdintens is not constant.
+    ```
+  grading:
+    ```json
+    {
+      "comment": "Correct test on β₂, no derivative written.",
+      "uncertain": false,
+      "comment_uncertainty": "",
+      "criteria": {
+        "marginal_effect_not_constant": true,
+        "justification_mentions_quadratic_or_derivative": true,
+        "derivative_retains_sales_variable": true,
+        "null_hypothesis_targets_beta2": true,
+        "two_sided_alternative": true,
+        "t_statistic_approx_2pt12": true,
+        "correct_critical_value": true,
+        "rejects_null_hypothesis": true,
+        "correct_final_conclusion": true,
+        "no_wrong_coefficient_test": true,
+        "no_doubled_numerator_error": true
+      }
+    }
+    ```
+
+Return only a valid JSON object in exactly the format shown in the few-shot examples above. Put all rubric booleans under the top-level 'criteria' object, include the top-level 'uncertain' boolean for the whole grading decision, and do not include markdown fences or extra keys.

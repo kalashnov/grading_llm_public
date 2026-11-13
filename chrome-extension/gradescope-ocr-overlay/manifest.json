@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Gradescope OCR Overlay",
+  "version": "0.1.0",
+  "description": "Shows locally generated OCR text on Gradescope grading pages.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.gradescope.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.gradescope.com/courses/*/questions/*/submissions/*/grade*",
+        "https://www.gradescope.com/courses/*/questions/*/answer_groups*"
+      ],
+      "js": [
+        "src/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_title": "Gradescope OCR Overlay"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "data/ocr-index.json"
+      ],
+      "matches": [
+        "https://www.gradescope.com/*"
+      ]
+    }
+  ]
+}
